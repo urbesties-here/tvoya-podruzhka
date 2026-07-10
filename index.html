@@ -1,1 +1,2394 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Твоя подружка</title>
+
+  <meta
+    name="description"
+    content="Девичьи поездки, встречи и новые истории в North Carolina."
+  >
+
+  <link rel="icon" type="image/png" href="logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Marck+Script&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --deep: #0D4D4D;
+      --teal: #16A6A6;
+      --soft: #A7DADB;
+      --pale: #D9EEEF;
+      --cream: #F5F1EA;
+      --white: #FFFDFC;
+      --text: #333333;
+      --muted: #6E7777;
+
+      --border: rgba(13, 77, 77, 0.13);
+      --shadow: 0 18px 50px rgba(51, 51, 51, 0.08);
+
+      --radius: 26px;
+      --container: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Manrope", sans-serif;
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+
+      background:
+        radial-gradient(
+          circle at top left,
+          rgba(217, 238, 239, 0.35),
+          transparent 28%
+        ),
+        linear-gradient(
+          180deg,
+          #fffdfa 0%,
+          var(--cream) 100%
+        );
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 46px 0;
+      scroll-margin-top: 100px;
+    }
+
+    .script {
+      font-family: "Marck Script", cursive;
+      color: var(--deep);
+      font-weight: 400;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      font-size: clamp(34px, 4vw, 52px);
+      line-height: 1.1;
+      margin-bottom: 22px;
+    }
+
+    .section-title::after {
+      content: "♡";
+      color: var(--teal);
+      font-size: 0.7em;
+    }
+
+    .card {
+      background: rgba(255, 253, 252, 0.9);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+
+      min-height: 50px;
+      padding: 0 24px;
+
+      border-radius: 999px;
+      border: 1px solid transparent;
+
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(
+        135deg,
+        var(--teal),
+        #2d9298
+      );
+
+      color: white;
+
+      box-shadow:
+        0 12px 28px rgba(22, 166, 166, 0.24);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      border-color: rgba(13, 77, 77, 0.2);
+      background: rgba(255, 255, 255, 0.65);
+      color: var(--deep);
+    }
+
+    /* HEADER */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      backdrop-filter: blur(16px);
+
+      background:
+        rgba(255, 253, 250, 0.86);
+
+      border-bottom:
+        1px solid rgba(13, 77, 77, 0.08);
+    }
+
+    .nav {
+      min-height: 82px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand img {
+      width: 150px;
+      max-height: 62px;
+      object-fit: contain;
+      object-position: left center;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--teal);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .menu-toggle {
+      display: none;
+
+      width: 44px;
+      height: 44px;
+
+      border: 0;
+      border-radius: 50%;
+
+      background: var(--pale);
+      color: var(--deep);
+
+      font-size: 22px;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 34px 0 20px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 0.82fr 1.55fr;
+      gap: 26px;
+    }
+
+    .hero-copy {
+      padding: 50px 18px 50px 14px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-title {
+      font-size: clamp(56px, 7vw, 92px);
+      line-height: 0.94;
+      margin-bottom: 22px;
+    }
+
+    .hero-text {
+      max-width: 460px;
+
+      font-size: 18px;
+      color: #3f5050;
+
+      margin-bottom: 28px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-media {
+      position: relative;
+
+      min-height: 520px;
+
+      border-radius: 44px;
+      overflow: hidden;
+
+      box-shadow: var(--shadow);
+    }
+
+    .hero-media img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .note {
+      position: absolute;
+      top: 42px;
+      right: 34px;
+
+      width: min(260px, 38%);
+
+      background:
+        rgba(255, 252, 247, 0.95);
+
+      padding: 28px 22px;
+
+      transform: rotate(3deg);
+
+      box-shadow:
+        0 20px 35px rgba(0, 0, 0, 0.14);
+
+      font-family: "Marck Script", cursive;
+      color: var(--deep);
+      font-size: 24px;
+      line-height: 1.25;
+    }
+
+    .note::before {
+      content: "";
+
+      position: absolute;
+      width: 74px;
+      height: 22px;
+
+      background:
+        rgba(167, 218, 219, 0.9);
+
+      top: -12px;
+      left: 50%;
+
+      transform:
+        translateX(-50%)
+        rotate(-3deg);
+    }
+
+    /* ADVICE */
+
+    .advice-wrap {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: center;
+
+      padding: 24px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 34px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(217, 238, 239, 0.75),
+          rgba(255, 255, 255, 0.9)
+        );
+
+      box-shadow: var(--shadow);
+    }
+
+    .advice-copy {
+      padding: 12px 18px;
+    }
+
+    .advice-copy h2 {
+      font-size: clamp(38px, 4vw, 58px);
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .advice-copy p {
+      font-size: 18px;
+    }
+
+    .advice-image {
+      border-radius: 24px;
+      overflow: hidden;
+      min-height: 260px;
+    }
+
+    .advice-image img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* CALENDAR */
+
+    .calendar-trip-grid {
+      display: grid;
+      grid-template-columns: 0.92fr 1.45fr;
+      gap: 26px;
+    }
+
+    .calendar-card {
+      padding: 28px;
+    }
+
+    .calendar-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin-bottom: 18px;
+    }
+
+    .calendar-head button {
+      width: 38px;
+      height: 38px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 50%;
+
+      background: #ffffff;
+      color: var(--deep);
+
+      cursor: pointer;
+    }
+
+    .month-label {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--deep);
+      text-transform: capitalize;
+    }
+
+    .weekdays,
+    .calendar-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+      text-align: center;
+    }
+
+    .weekdays {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .day {
+      position: relative;
+
+      aspect-ratio: 1;
+
+      border: 0;
+      border-radius: 50%;
+
+      background: transparent;
+      color: var(--text);
+
+      font-weight: 600;
+    }
+
+    .day.other-month {
+      opacity: 0.25;
+    }
+
+    .day.has-event {
+      cursor: pointer;
+      color: white;
+      background: var(--teal);
+
+      box-shadow:
+        0 8px 18px rgba(22, 166, 166, 0.2);
+    }
+
+    .day.has-event:hover,
+    .day.has-event.active {
+      transform:
+        translateY(-2px)
+        scale(1.04);
+
+      background: var(--deep);
+    }
+
+    .calendar-legend {
+      margin-top: 22px;
+
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+
+      border-radius: 50%;
+
+      background: var(--teal);
+    }
+
+    /* TRIP CARD */
+
+    .trip-card {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+
+      min-height: 500px;
+    }
+
+    .trip-image {
+      min-height: 100%;
+    }
+
+    .trip-image img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .trip-content {
+      padding: 34px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .date-pill {
+      display: inline-flex;
+      width: max-content;
+
+      padding: 8px 14px;
+
+      border-radius: 999px;
+      border: 1px solid var(--soft);
+
+      color: var(--deep);
+      font-size: 12px;
+      font-weight: 800;
+
+      margin-bottom: 16px;
+    }
+
+    .trip-content h3 {
+      font-size: clamp(40px, 4vw, 58px);
+      line-height: 1;
+      margin-bottom: 18px;
+    }
+
+    .trip-content p {
+      color: #506060;
+      margin-bottom: 18px;
+    }
+
+    .trip-list {
+      list-style: none;
+
+      display: grid;
+      gap: 10px;
+
+      margin-bottom: 22px;
+    }
+
+    .trip-list li::before {
+      content: "♡";
+      margin-right: 9px;
+      color: var(--teal);
+    }
+
+    /* BLOG */
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 20px;
+    }
+
+    .blog-card {
+      transition: 0.25s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .blog-card img {
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .blog-body {
+      padding: 22px;
+    }
+
+    .blog-category {
+      color: var(--teal);
+
+      font-size: 11px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      font-weight: 800;
+
+      margin-bottom: 8px;
+    }
+
+    .blog-body h3 {
+      font-size: 20px;
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .blog-body p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* GALLERY */
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 26px;
+    }
+
+    .gallery-photo {
+      min-height: 470px;
+    }
+
+    .gallery-photo img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-content {
+      padding: 42px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(217, 238, 239, 0.88),
+          rgba(255, 253, 252, 0.96)
+        );
+    }
+
+    .gallery-content h3 {
+      font-size: clamp(40px, 4vw, 58px);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .check-list {
+      list-style: none;
+
+      display: grid;
+      gap: 12px;
+
+      margin: 18px 0 26px;
+    }
+
+    .check-list li::before {
+      content: "✓";
+      color: var(--teal);
+      font-weight: 900;
+      margin-right: 10px;
+    }
+
+    /* INFO CARDS */
+
+    .info-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 20px;
+    }
+
+    .info-card {
+      min-height: 430px;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-card img {
+      height: 210px;
+      object-fit: cover;
+    }
+
+    .info-body {
+      padding: 24px;
+
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+    }
+
+    .info-body h3 {
+      font-size: 34px;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .info-body p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .inline-link {
+      color: var(--deep);
+      font-weight: 800;
+      margin-top: auto;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 10px;
+
+      margin-top: auto;
+
+      font-size: 14px;
+    }
+
+    /* FOOTER */
+
+    .footer {
+      padding: 34px 0;
+
+      border-top:
+        1px solid var(--border);
+
+      margin-top: 36px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns:
+        1fr auto 1fr;
+
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-logo img {
+      width: 150px;
+    }
+
+    .footer-center {
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .socials {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .socials a {
+      width: 42px;
+      height: 42px;
+
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      background: var(--teal);
+      color: white;
+
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    /* MODAL */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+
+      display: none;
+      place-items: center;
+
+      padding: 20px;
+
+      background:
+        rgba(13, 77, 77, 0.56);
+
+      backdrop-filter: blur(10px);
+    }
+
+    .modal.open {
+      display: grid;
+    }
+
+    .modal-card {
+      width: min(560px, 100%);
+
+      background: var(--white);
+
+      border-radius: 28px;
+
+      padding: 30px;
+
+      box-shadow:
+        0 24px 70px rgba(0, 0, 0, 0.25);
+
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+
+      width: 38px;
+      height: 38px;
+
+      border: 0;
+      border-radius: 50%;
+
+      background: var(--pale);
+
+      cursor: pointer;
+    }
+
+    .modal-card h3 {
+      font-size: 42px;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .modal-card p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    /* ANIMATION */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* TABLET */
+
+    @media (max-width: 980px) {
+
+      .nav-links {
+        position: fixed;
+        top: 82px;
+        left: 20px;
+        right: 20px;
+
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+
+        padding: 20px;
+
+        border-radius: 22px;
+
+        background:
+          rgba(255, 253, 250, 0.98);
+
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: inline-grid;
+        place-items: center;
+      }
+
+      .header-actions .btn {
+        display: none;
+      }
+
+      .hero-grid,
+      .advice-wrap,
+      .calendar-trip-grid,
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .trip-card {
+        grid-template-columns: 1fr;
+      }
+
+      .trip-image {
+        min-height: 350px;
+      }
+
+      .blog-grid,
+      .info-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .info-grid .info-card:last-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 680px) {
+
+      .container {
+        width:
+          min(
+            100% - 24px,
+            var(--container)
+          );
+      }
+
+      .nav {
+        min-height: 72px;
+      }
+
+      .brand img {
+        width: 126px;
+      }
+
+      .hero {
+        padding-top: 20px;
+      }
+
+      .hero-copy {
+        padding: 28px 4px 20px;
+      }
+
+      .hero-media {
+        min-height: 390px;
+        border-radius: 28px;
+      }
+
+      .note {
+        width: 52%;
+        top: 18px;
+        right: 16px;
+        font-size: 18px;
+        padding: 22px 16px;
+      }
+
+      .calendar-card,
+      .trip-content,
+      .gallery-content {
+        padding: 22px;
+      }
+
+      .blog-grid,
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .info-grid .info-card:last-child {
+        grid-column: auto;
+      }
+
+      .gallery-photo {
+        min-height: 330px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .footer-logo img {
+        margin: auto;
+      }
+
+      .socials {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+
+    <div class="container nav">
+
+      <a
+        class="brand"
+        href="#home"
+      >
+        <img
+          src="logo-main.png"
+          alt="Твоя подружка"
+        >
+      </a>
+
+      <nav
+        class="nav-links"
+        id="navLinks"
+      >
+        <a href="#home">
+          Главная
+        </a>
+
+        <a href="#calendar">
+          Календарь
+        </a>
+
+        <a href="#blog">
+          Блог
+        </a>
+
+        <a href="#gallery">
+          Галерея
+        </a>
+
+        <a href="#about">
+          О нас
+        </a>
+
+        <a href="#contacts">
+          Контакты
+        </a>
+      </nav>
+
+      <div class="header-actions">
+
+        <a
+          class="btn btn-primary"
+          href="#calendar"
+        >
+          Присоединиться
+        </a>
+
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          aria-label="Открыть меню"
+        >
+          ☰
+        </button>
+
+      </div>
+
+    </div>
+
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+
+    <section
+      class="hero section"
+      id="home"
+    >
+
+      <div class="container hero-grid">
+
+        <div class="hero-copy reveal">
+
+          <div class="eyebrow">
+            Charlotte • North Carolina
+          </div>
+
+          <h1 class="hero-title script">
+            Привет,<br>
+            подружка!
+          </h1>
+
+          <p class="hero-text">
+            Мы с подружкой играем в игру
+            «Я никогда НЕ…» и каждую неделю
+            пробуем что-то новое вместе.
+          </p>
+
+          <div class="hero-buttons">
+
+            <a
+              class="btn btn-primary"
+              href="#calendar"
+            >
+              Смотреть ближайшие поездки →
+            </a>
+
+            <a
+              class="btn btn-secondary"
+              href="#blog"
+            >
+              Смотреть наши истории
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="hero-media reveal">
+
+          <img
+            src="hero-banner.png"
+            alt="Девичья поездка у океана"
+          >
+
+          <div class="note">
+            Ты никогда не пожалеешь
+            о том, что сделала.
+            Пожалеешь только о том,
+            чего не сделала. ♡
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- MONTH ADVICE -->
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="advice-wrap reveal">
+
+          <div class="advice-copy">
+
+            <div class="eyebrow">
+              Совет месяца • Июль
+            </div>
+
+            <h2 class="script">
+              Пусть этот июль станет
+              месяцем первых раз.
+            </h2>
+
+            <p>
+              Попробуй то, на что давно
+              не решалась. Позвони первой.
+              Поезжай туда, где никогда
+              не была. Собери подруг.
+              Самые тёплые истории
+              начинаются с одного решения.
+            </p>
+
+          </div>
+
+          <div class="advice-image">
+
+            <img
+              src="monthly-advice-july.png"
+              alt="Совет месяца"
+            >
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- CALENDAR -->
+
+    <section
+      class="section"
+      id="calendar"
+    >
+
+      <div class="container">
+
+        <div class="section-title script">
+          Календарь поездок
+        </div>
+
+        <div class="calendar-trip-grid">
+
+          <div class="card calendar-card reveal">
+
+            <div class="calendar-head">
+
+              <button
+                id="prevMonth"
+                aria-label="Предыдущий месяц"
+              >
+                ‹
+              </button>
+
+              <div
+                class="month-label"
+                id="monthLabel"
+              ></div>
+
+              <button
+                id="nextMonth"
+                aria-label="Следующий месяц"
+              >
+                ›
+              </button>
+
+            </div>
+
+            <div class="weekdays">
+
+              <div>Пн</div>
+              <div>Вт</div>
+              <div>Ср</div>
+              <div>Чт</div>
+              <div>Пт</div>
+              <div>Сб</div>
+              <div>Вс</div>
+
+            </div>
+
+            <div
+              class="calendar-days"
+              id="calendarDays"
+            ></div>
+
+            <div class="calendar-legend">
+
+              <span class="legend-dot"></span>
+
+              Запланированное событие
+
+            </div>
+
+          </div>
+
+          <article class="card trip-card reveal">
+
+            <div class="trip-image">
+
+              <img
+                src="covington-trip.png"
+                alt="Поездка в Ковингтон"
+              >
+
+            </div>
+
+            <div class="trip-content">
+
+              <div
+                class="date-pill"
+                id="featuredDate"
+              >
+                12 июля 2026
+              </div>
+
+              <h3
+                class="script"
+                id="featuredTitle"
+              >
+                Ковингтон — Mystic Falls
+              </h3>
+
+              <p id="featuredDescription">
+                Едем в город, где снимали
+                «Дневники вампира»:
+                исторический центр,
+                часовая башня,
+                знакомые улицы
+                и атмосфера Mystic Falls.
+              </p>
+
+              <ul
+                class="trip-list"
+                id="featuredList"
+              >
+                <li>
+                  Локации съёмок
+                </li>
+
+                <li>
+                  Фото и видео
+                </li>
+
+                <li>
+                  Прогулка по центру
+                </li>
+
+                <li>
+                  Новые впечатления
+                </li>
+              </ul>
+
+              <button
+                class="btn btn-primary"
+                id="featuredButton"
+              >
+                Подробнее и запись →
+              </button>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- BLOG -->
+
+    <section
+      class="section"
+      id="blog"
+    >
+
+      <div class="container">
+
+        <div class="section-title script">
+          Наш блог
+        </div>
+
+        <div class="blog-grid">
+
+          <article class="card blog-card reveal">
+
+            <img
+              src="blog-picnic.png"
+              alt="Девичий пикник"
+            >
+
+            <div class="blog-body">
+
+              <div class="blog-category">
+                Встречи
+              </div>
+
+              <h3>
+                Как проходит наш уютный
+                девичий пикник
+              </h3>
+
+              <p>
+                Пледы, лёгкая еда,
+                красивые места
+                и живые разговоры.
+              </p>
+
+            </div>
+
+          </article>
+
+          <article class="card blog-card reveal">
+
+            <img
+              src="blog-roadtrip.png"
+              alt="Путешествие"
+            >
+
+            <div class="blog-body">
+
+              <div class="blog-category">
+                Путешествия
+              </div>
+
+              <h3>
+                Почему иногда достаточно
+                просто сказать:
+                «Поехали?»
+              </h3>
+
+              <p>
+                О дороге, спонтанных планах
+                и историях,
+                которые остаются с нами.
+              </p>
+
+            </div>
+
+          </article>
+
+          <article class="card blog-card reveal">
+
+            <img
+              src="blog-friends.png"
+              alt="Уютный вечер"
+            >
+
+            <div class="blog-body">
+
+              <div class="blog-category">
+                Вдохновение
+              </div>
+
+              <h3>
+                Маленькие привычки,
+                которые делают жизнь теплее
+              </h3>
+
+              <p>
+                Иногда лучший отдых
+                начинается с чашки кофе
+                и свободного вечера.
+              </p>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- CLOUD GALLERY -->
+
+    <section
+      class="section"
+      id="gallery"
+    >
+
+      <div class="container">
+
+        <div class="section-title script">
+          Доступ к облаку
+        </div>
+
+        <div class="gallery-grid">
+
+          <div class="card gallery-photo reveal">
+
+            <img
+              src="cloud-gallery.png"
+              alt="Фотографии из поездок"
+            >
+
+          </div>
+
+          <div class="card gallery-content reveal">
+
+            <div class="eyebrow">
+              Фото и видео после встреч
+            </div>
+
+            <h3 class="script">
+              Забери свои воспоминания
+            </h3>
+
+            <p>
+              После каждой поездки
+              мы собираем фотографии
+              и видео в отдельную папку,
+              чтобы каждая участница
+              могла сохранить любимые кадры.
+            </p>
+
+            <ul class="check-list">
+
+              <li>
+                Альбомы по каждой поездке
+              </li>
+
+              <li>
+                Простое скачивание
+              </li>
+
+              <li>
+                Фото и видео в одном месте
+              </li>
+
+            </ul>
+
+            <a
+              class="btn btn-primary"
+              href="https://drive.google.com/drive/u/7/home"
+              target="_blank"
+              rel="noopener"
+            >
+              Открыть галерею →
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ABOUT, PARTNERSHIP, CONTACTS -->
+
+    <section
+      class="section"
+      id="about"
+    >
+
+      <div class="container">
+
+        <div class="info-grid">
+
+          <article class="card info-card reveal">
+
+            <img
+              src="about-us.png"
+              alt="О проекте"
+            >
+
+            <div class="info-body">
+
+              <h3 class="script">
+                О нас
+              </h3>
+
+              <p>
+                «Твоя подружка» —
+                это девичьи поездки,
+                встречи и маленькие
+                приключения для тех,
+                кто хочет выйти из рутины
+                и попробовать что-то впервые.
+              </p>
+
+              <a
+                class="inline-link"
+                href="#home"
+              >
+                Подробнее о нас →
+              </a>
+
+            </div>
+
+          </article>
+
+          <article class="card info-card reveal">
+
+            <img
+              src="partnership.png"
+              alt="Сотрудничество"
+            >
+
+            <div class="info-body">
+
+              <h3 class="script">
+                Сотрудничество
+              </h3>
+
+              <p>
+                Мы открыты к коллаборациям
+                с локальными брендами,
+                кафе, отелями,
+                фотографами, студиями
+                и красивыми местами.
+              </p>
+
+              <a
+                class="inline-link"
+                href="mailto:ur-besties@aol.com"
+              >
+                Предложить сотрудничество →
+              </a>
+
+            </div>
+
+          </article>
+
+          <article
+            class="card info-card reveal"
+            id="contacts"
+          >
+
+            <img
+              src="contact-info.png"
+              alt="Контакты"
+            >
+
+            <div class="info-body">
+
+              <h3 class="script">
+                Контакты
+              </h3>
+
+              <p>
+                Напиши нам —
+                мы всегда рады
+                новым знакомствам,
+                идеям и предложениям.
+              </p>
+
+              <div class="contact-list">
+
+                <a
+                  href="mailto:ur-besties@aol.com"
+                >
+                  ✉ ur-besties@aol.com
+                </a>
+
+                <a
+                  href="https://www.instagram.com/meet_ur_besties/"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  ◎ Instagram:
+                  @meet_ur_besties
+                </a>
+
+                <a
+                  href="https://buymeacoffee.com/tvoya.podruzhka"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  ♡ Support Our Next Adventure
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+
+    <div class="container footer-grid">
+
+      <div class="footer-logo">
+
+        <img
+          src="logo-main.png"
+          alt="Твоя подружка"
+        >
+
+      </div>
+
+      <div class="footer-center">
+
+        © 2026 Твоя подружка
+
+        <br>
+
+        Девичьи поездки
+        и встречи
+        в North Carolina
+
+      </div>
+
+      <div class="socials">
+
+        <a
+          href="https://www.instagram.com/meet_ur_besties/"
+          target="_blank"
+          rel="noopener"
+        >
+          IG
+        </a>
+
+        <a href="#">
+          YT
+        </a>
+
+        <a href="#">
+          TT
+        </a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+  <!-- EVENT MODAL -->
+
+  <div
+    class="modal"
+    id="eventModal"
+    aria-hidden="true"
+  >
+
+    <div class="modal-card">
+
+      <button
+        class="modal-close"
+        id="modalClose"
+        aria-label="Закрыть"
+      >
+        ✕
+      </button>
+
+      <div
+        class="eyebrow"
+        id="modalDate"
+      ></div>
+
+      <h3
+        class="script"
+        id="modalTitle"
+      ></h3>
+
+      <p id="modalDescription"></p>
+
+      <a
+        class="btn btn-primary"
+        href="mailto:ur-besties@aol.com?subject=Хочу присоединиться к поездке"
+      >
+        Хочу присоединиться
+      </a>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    /*
+      ======================================
+      СОБЫТИЯ КАЛЕНДАРЯ
+      ======================================
+
+      Чтобы добавить новое событие:
+
+      1. Скопируй один объект.
+      2. Вставь его перед закрывающей
+         квадратной скобкой массива events.
+      3. Измени дату, название,
+         описание, изображение и пункты.
+
+      Формат даты:
+
+      YYYY-MM-DD
+
+      Например:
+
+      2026-08-08
+    */
+
+    const events = [
+
+      {
+        date: "2026-07-12",
+
+        title:
+          "Ковингтон — Mystic Falls",
+
+        description:
+          "Поездка в город, где снимали «Дневники вампира»: исторический центр, часовая башня, локации съёмок и атмосфера Mystic Falls.",
+
+        image:
+          "covington-trip.png",
+
+        details: [
+          "Локации съёмок",
+          "Фото и видео",
+          "Прогулка по центру",
+          "Новые впечатления"
+        ]
+      },
+
+      {
+        date: "2026-07-24",
+
+        title:
+          "Прогулка на бордах",
+
+        description:
+          "Летний день на воде: спокойная прогулка, красивые кадры, лёгкий пикник и хорошая компания.",
+
+        image:
+          "blog-roadtrip.png",
+
+        details: [
+          "Прогулка на воде",
+          "Фото и видео",
+          "Лёгкий пикник",
+          "Новые знакомства"
+        ]
+      },
+
+      {
+        date: "2026-07-31",
+
+        title:
+          "Рисование в лесу",
+
+        description:
+          "Арт-встреча на природе: холсты, краски, лёгкие закуски, музыка и спокойная атмосфера.",
+
+        image:
+          "blog-picnic.png",
+
+        details: [
+          "Холсты и краски",
+          "Лесная локация",
+          "Чай и сладости",
+          "Фото на память"
+        ]
+      }
+
+    ];
+
+    const monthNames = [
+      "январь",
+      "февраль",
+      "март",
+      "апрель",
+      "май",
+      "июнь",
+      "июль",
+      "август",
+      "сентябрь",
+      "октябрь",
+      "ноябрь",
+      "декабрь"
+    ];
+
+    const monthLabel =
+      document.getElementById(
+        "monthLabel"
+      );
+
+    const calendarDays =
+      document.getElementById(
+        "calendarDays"
+      );
+
+    const featuredDate =
+      document.getElementById(
+        "featuredDate"
+      );
+
+    const featuredTitle =
+      document.getElementById(
+        "featuredTitle"
+      );
+
+    const featuredDescription =
+      document.getElementById(
+        "featuredDescription"
+      );
+
+    const featuredList =
+      document.getElementById(
+        "featuredList"
+      );
+
+    const featuredButton =
+      document.getElementById(
+        "featuredButton"
+      );
+
+    const featuredImage =
+      document.querySelector(
+        ".trip-image img"
+      );
+
+    const eventModal =
+      document.getElementById(
+        "eventModal"
+      );
+
+    const modalDate =
+      document.getElementById(
+        "modalDate"
+      );
+
+    const modalTitle =
+      document.getElementById(
+        "modalTitle"
+      );
+
+    const modalDescription =
+      document.getElementById(
+        "modalDescription"
+      );
+
+    let currentDate =
+      new Date(2026, 6, 1);
+
+    function getEventByDate(
+      date
+    ) {
+
+      return events.find(
+        event =>
+          event.date === date
+      );
+
+    }
+
+    function formatDate(
+      dateString
+    ) {
+
+      const date =
+        new Date(
+          dateString +
+          "T12:00:00"
+        );
+
+      return `
+        ${date.getDate()}
+        ${monthNames[date.getMonth()]}
+        ${date.getFullYear()}
+      `;
+
+    }
+
+    function showFeaturedEvent(
+      event
+    ) {
+
+      if (!event) {
+        return;
+      }
+
+      featuredDate.textContent =
+        formatDate(
+          event.date
+        );
+
+      featuredTitle.textContent =
+        event.title;
+
+      featuredDescription.textContent =
+        event.description;
+
+      featuredImage.src =
+        event.image;
+
+      featuredImage.alt =
+        event.title;
+
+      featuredList.innerHTML =
+        event.details
+          .map(
+            item =>
+              `<li>${item}</li>`
+          )
+          .join("");
+
+      featuredButton.onclick =
+        () => openModal(event);
+
+    }
+
+    function openModal(
+      event
+    ) {
+
+      modalDate.textContent =
+        formatDate(
+          event.date
+        );
+
+      modalTitle.textContent =
+        event.title;
+
+      modalDescription.textContent =
+        event.description;
+
+      eventModal.classList.add(
+        "open"
+      );
+
+      eventModal.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+      document.body.style.overflow =
+        "hidden";
+
+    }
+
+    function closeModal() {
+
+      eventModal.classList.remove(
+        "open"
+      );
+
+      eventModal.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      document.body.style.overflow =
+        "";
+
+    }
+
+    function renderCalendar() {
+
+      const year =
+        currentDate.getFullYear();
+
+      const month =
+        currentDate.getMonth();
+
+      monthLabel.textContent =
+        `${monthNames[month]} ${year}`;
+
+      const firstDay =
+        new Date(
+          year,
+          month,
+          1
+        );
+
+      const lastDay =
+        new Date(
+          year,
+          month + 1,
+          0
+        );
+
+      let startWeekday =
+        firstDay.getDay();
+
+      startWeekday =
+        startWeekday === 0
+          ? 7
+          : startWeekday;
+
+      const previousMonthLastDay =
+        new Date(
+          year,
+          month,
+          0
+        ).getDate();
+
+      calendarDays.innerHTML =
+        "";
+
+      for (
+        let index = 0;
+        index < 42;
+        index++
+      ) {
+
+        const dayButton =
+          document.createElement(
+            "button"
+          );
+
+        dayButton.className =
+          "day";
+
+        let dayNumber;
+
+        let cellMonth =
+          month;
+
+        let cellYear =
+          year;
+
+        if (
+          index <
+          startWeekday - 1
+        ) {
+
+          dayNumber =
+            previousMonthLastDay -
+            (
+              startWeekday -
+              2 -
+              index
+            );
+
+          cellMonth =
+            month - 1;
+
+          if (
+            cellMonth < 0
+          ) {
+
+            cellMonth = 11;
+            cellYear -= 1;
+
+          }
+
+          dayButton.classList.add(
+            "other-month"
+          );
+
+        } else if (
+          index >=
+          startWeekday -
+          1 +
+          lastDay.getDate()
+        ) {
+
+          dayNumber =
+            index -
+            (
+              startWeekday -
+              1 +
+              lastDay.getDate()
+            ) +
+            1;
+
+          cellMonth =
+            month + 1;
+
+          if (
+            cellMonth > 11
+          ) {
+
+            cellMonth = 0;
+            cellYear += 1;
+
+          }
+
+          dayButton.classList.add(
+            "other-month"
+          );
+
+        } else {
+
+          dayNumber =
+            index -
+            (
+              startWeekday -
+              2
+            );
+
+        }
+
+        dayButton.textContent =
+          dayNumber;
+
+        const isoDate = [
+
+          cellYear,
+
+          String(
+            cellMonth + 1
+          ).padStart(
+            2,
+            "0"
+          ),
+
+          String(
+            dayNumber
+          ).padStart(
+            2,
+            "0"
+          )
+
+        ].join("-");
+
+        const event =
+          getEventByDate(
+            isoDate
+          );
+
+        if (event) {
+
+          dayButton.classList.add(
+            "has-event"
+          );
+
+          dayButton.title =
+            event.title;
+
+          dayButton.addEventListener(
+            "click",
+            () => {
+
+              document
+                .querySelectorAll(
+                  ".day.active"
+                )
+                .forEach(
+                  day =>
+                    day.classList.remove(
+                      "active"
+                    )
+                );
+
+              dayButton.classList.add(
+                "active"
+              );
+
+              showFeaturedEvent(
+                event
+              );
+
+            }
+          );
+
+        }
+
+        calendarDays.appendChild(
+          dayButton
+        );
+
+      }
+
+    }
+
+    document
+      .getElementById(
+        "prevMonth"
+      )
+      .addEventListener(
+        "click",
+        () => {
+
+          currentDate =
+            new Date(
+              currentDate.getFullYear(),
+              currentDate.getMonth() - 1,
+              1
+            );
+
+          renderCalendar();
+
+        }
+      );
+
+    document
+      .getElementById(
+        "nextMonth"
+      )
+      .addEventListener(
+        "click",
+        () => {
+
+          currentDate =
+            new Date(
+              currentDate.getFullYear(),
+              currentDate.getMonth() + 1,
+              1
+            );
+
+          renderCalendar();
+
+        }
+      );
+
+    document
+      .getElementById(
+        "modalClose"
+      )
+      .addEventListener(
+        "click",
+        closeModal
+      );
+
+    eventModal.addEventListener(
+      "click",
+      event => {
+
+        if (
+          event.target ===
+          eventModal
+        ) {
+
+          closeModal();
+
+        }
+
+      }
+    );
+
+    document.addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key ===
+          "Escape"
+        ) {
+
+          closeModal();
+
+        }
+
+      }
+    );
+
+    /* MOBILE MENU */
+
+    const menuToggle =
+      document.getElementById(
+        "menuToggle"
+      );
+
+    const navLinks =
+      document.getElementById(
+        "navLinks"
+      );
+
+    menuToggle.addEventListener(
+      "click",
+      () => {
+
+        navLinks.classList.toggle(
+          "open"
+        );
+
+      }
+    );
+
+    navLinks
+      .querySelectorAll("a")
+      .forEach(
+        link => {
+
+          link.addEventListener(
+            "click",
+            () => {
+
+              navLinks.classList.remove(
+                "open"
+              );
+
+            }
+          );
+
+        }
+      );
+
+    /* ANIMATION */
+
+    const observer =
+      new IntersectionObserver(
+
+        entries => {
+
+          entries.forEach(
+            entry => {
+
+              if (
+                entry.isIntersecting
+              ) {
+
+                entry.target.classList.add(
+                  "visible"
+                );
+
+                observer.unobserve(
+                  entry.target
+                );
+
+              }
+
+            }
+          );
+
+        },
+
+        {
+          threshold: 0.12
+        }
+
+      );
+
+    document
+      .querySelectorAll(
+        ".reveal"
+      )
+      .forEach(
+        element =>
+          observer.observe(
+            element
+          )
+      );
+
+    renderCalendar();
+
+    showFeaturedEvent(
+      events[0]
+    );
+
+  </script>
+
+</body>
+</html>
