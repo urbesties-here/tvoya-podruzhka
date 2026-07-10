@@ -2,19 +2,35 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Твоя подружка</title>
 
   <meta
     name="description"
-    content="Девичьи поездки, встречи и новые истории в North Carolina."
+    content="Девичьи поездки, встречи, пикники, творчество и новые истории в Северной Каролине."
   >
 
-  <link rel="icon" type="image/png" href="logo.png">
+  <link
+    rel="icon"
+    type="image/png"
+    href="logo.png"
+  >
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
 
   <link
     href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Marck+Script&display=swap"
@@ -35,7 +51,10 @@
       --border: rgba(13, 77, 77, 0.13);
       --shadow: 0 18px 50px rgba(51, 51, 51, 0.08);
 
-      --radius: 26px;
+      --radius-large: 34px;
+      --radius-medium: 26px;
+      --radius-small: 18px;
+
       --container: 1180px;
     }
 
@@ -74,8 +93,8 @@
     }
 
     a {
-      text-decoration: none;
       color: inherit;
+      text-decoration: none;
     }
 
     button {
@@ -99,12 +118,14 @@
     }
 
     .eyebrow {
+      margin-bottom: 10px;
+
+      color: var(--teal);
+
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 10px;
     }
 
     .section-title {
@@ -112,9 +133,10 @@
       align-items: center;
       gap: 12px;
 
+      margin-bottom: 22px;
+
       font-size: clamp(34px, 4vw, 52px);
       line-height: 1.1;
-      margin-bottom: 22px;
     }
 
     .section-title::after {
@@ -124,11 +146,12 @@
     }
 
     .card {
-      background: rgba(255, 253, 252, 0.9);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
       overflow: hidden;
+
+      background: rgba(255, 253, 252, 0.92);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-medium);
+      box-shadow: var(--shadow);
     }
 
     .btn {
@@ -140,22 +163,25 @@
       min-height: 50px;
       padding: 0 24px;
 
-      border-radius: 999px;
       border: 1px solid transparent;
+      border-radius: 999px;
 
       font-weight: 700;
+      text-align: center;
+
       cursor: pointer;
       transition: 0.25s ease;
     }
 
     .btn-primary {
-      background: linear-gradient(
-        135deg,
-        var(--teal),
-        #2d9298
-      );
+      color: #ffffff;
 
-      color: white;
+      background:
+        linear-gradient(
+          135deg,
+          var(--teal),
+          #2d9298
+        );
 
       box-shadow:
         0 12px 28px rgba(22, 166, 166, 0.24);
@@ -163,44 +189,56 @@
 
     .btn-primary:hover {
       transform: translateY(-2px);
+
+      box-shadow:
+        0 16px 34px rgba(22, 166, 166, 0.3);
     }
 
     .btn-secondary {
-      border-color: rgba(13, 77, 77, 0.2);
-      background: rgba(255, 255, 255, 0.65);
       color: var(--deep);
+
+      background: rgba(255, 255, 255, 0.68);
+      border-color: rgba(13, 77, 77, 0.2);
     }
 
-    /* HEADER */
+    .btn-secondary:hover {
+      background: var(--pale);
+    }
+
+    /* ШАПКА */
 
     .site-header {
       position: sticky;
       top: 0;
       z-index: 1000;
 
+      background: rgba(255, 253, 250, 0.9);
+      border-bottom: 1px solid rgba(13, 77, 77, 0.08);
+
       backdrop-filter: blur(16px);
-
-      background:
-        rgba(255, 253, 250, 0.86);
-
-      border-bottom:
-        1px solid rgba(13, 77, 77, 0.08);
     }
 
     .nav {
-      min-height: 82px;
-
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 24px;
+
+      min-height: 82px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
     }
 
     .brand img {
-      width: 150px;
-      max-height: 62px;
+      width: 76px;
+      height: 76px;
+
       object-fit: contain;
-      object-position: left center;
+      object-position: center;
     }
 
     .nav-links {
@@ -210,6 +248,10 @@
 
       font-size: 14px;
       font-weight: 600;
+    }
+
+    .nav-links a {
+      transition: 0.2s ease;
     }
 
     .nav-links a:hover {
@@ -224,20 +266,22 @@
 
     .menu-toggle {
       display: none;
+      place-items: center;
 
       width: 44px;
       height: 44px;
 
+      color: var(--deep);
+
+      background: var(--pale);
       border: 0;
       border-radius: 50%;
 
-      background: var(--pale);
-      color: var(--deep);
-
       font-size: 22px;
+      cursor: pointer;
     }
 
-    /* HERO */
+    /* ГЛАВНЫЙ ЭКРАН */
 
     .hero {
       padding: 34px 0 20px;
@@ -246,30 +290,32 @@
     .hero-grid {
       display: grid;
       grid-template-columns: 0.82fr 1.55fr;
+      align-items: stretch;
       gap: 26px;
     }
 
     .hero-copy {
-      padding: 50px 18px 50px 14px;
-
       display: flex;
       flex-direction: column;
       justify-content: center;
+
+      padding: 50px 18px 50px 14px;
     }
 
     .hero-title {
+      margin-bottom: 22px;
+
       font-size: clamp(56px, 7vw, 92px);
       line-height: 0.94;
-      margin-bottom: 22px;
     }
 
     .hero-text {
       max-width: 460px;
+      margin-bottom: 28px;
 
-      font-size: 18px;
       color: #3f5050;
 
-      margin-bottom: 28px;
+      font-size: 18px;
     }
 
     .hero-buttons {
@@ -278,77 +324,84 @@
       gap: 12px;
     }
 
+    /*
+      Главное изображение больше не обрезается.
+      object-fit: contain показывает всю картинку,
+      включая надпись «Твоя подружка».
+    */
+
     .hero-media {
       position: relative;
 
-      min-height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-      border-radius: 44px;
+      min-height: 500px;
+      padding: 10px;
+
       overflow: hidden;
 
+      background: #F5EFE7;
+      border-radius: 44px;
       box-shadow: var(--shadow);
     }
 
     .hero-media img {
+      width: 100%;
       height: 100%;
-      object-fit: cover;
+      max-height: 500px;
+
+      object-fit: contain;
+      object-position: center;
     }
 
     .note {
       position: absolute;
-      top: 42px;
-      right: 34px;
+      top: 28px;
+      right: 24px;
 
-      width: min(260px, 38%);
+      width: min(220px, 31%);
+      padding: 22px 18px;
 
-      background:
-        rgba(255, 252, 247, 0.95);
+      color: var(--deep);
 
-      padding: 28px 22px;
-
-      transform: rotate(3deg);
-
-      box-shadow:
-        0 20px 35px rgba(0, 0, 0, 0.14);
+      background: rgba(255, 252, 247, 0.96);
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.14);
 
       font-family: "Marck Script", cursive;
-      color: var(--deep);
-      font-size: 24px;
+      font-size: 20px;
       line-height: 1.25;
+
+      transform: rotate(2deg);
     }
 
     .note::before {
       content: "";
 
       position: absolute;
+      top: -12px;
+      left: 50%;
+
       width: 74px;
       height: 22px;
 
-      background:
-        rgba(167, 218, 219, 0.9);
-
-      top: -12px;
-      left: 50%;
+      background: rgba(167, 218, 219, 0.9);
 
       transform:
         translateX(-50%)
         rotate(-3deg);
     }
 
-    /* ADVICE */
+    /* СОВЕТ МЕСЯЦА */
 
     .advice-wrap {
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
-      gap: 24px;
       align-items: center;
+      gap: 24px;
 
       padding: 24px;
-
-      border:
-        1px solid var(--border);
-
-      border-radius: 34px;
 
       background:
         linear-gradient(
@@ -357,6 +410,8 @@
           rgba(255, 255, 255, 0.9)
         );
 
+      border: 1px solid var(--border);
+      border-radius: var(--radius-large);
       box-shadow: var(--shadow);
     }
 
@@ -365,9 +420,10 @@
     }
 
     .advice-copy h2 {
+      margin-bottom: 14px;
+
       font-size: clamp(38px, 4vw, 58px);
       line-height: 1;
-      margin-bottom: 14px;
     }
 
     .advice-copy p {
@@ -375,9 +431,10 @@
     }
 
     .advice-image {
-      border-radius: 24px;
-      overflow: hidden;
       min-height: 260px;
+      overflow: hidden;
+
+      border-radius: 24px;
     }
 
     .advice-image img {
@@ -385,11 +442,12 @@
       object-fit: cover;
     }
 
-    /* CALENDAR */
+    /* КАЛЕНДАРЬ */
 
     .calendar-trip-grid {
       display: grid;
       grid-template-columns: 0.92fr 1.45fr;
+      align-items: stretch;
       gap: 26px;
     }
 
@@ -409,21 +467,20 @@
       width: 38px;
       height: 38px;
 
-      border:
-        1px solid var(--border);
-
-      border-radius: 50%;
+      color: var(--deep);
 
       background: #ffffff;
-      color: var(--deep);
+      border: 1px solid var(--border);
+      border-radius: 50%;
 
       cursor: pointer;
     }
 
     .month-label {
+      color: var(--deep);
+
       font-size: 20px;
       font-weight: 800;
-      color: var(--deep);
       text-transform: capitalize;
     }
 
@@ -432,14 +489,17 @@
       display: grid;
       grid-template-columns: repeat(7, 1fr);
       gap: 8px;
+
       text-align: center;
     }
 
     .weekdays {
+      margin-bottom: 8px;
+
       color: var(--muted);
+
       font-size: 12px;
       font-weight: 800;
-      margin-bottom: 8px;
     }
 
     .day {
@@ -447,11 +507,11 @@
 
       aspect-ratio: 1;
 
-      border: 0;
-      border-radius: 50%;
+      color: var(--text);
 
       background: transparent;
-      color: var(--text);
+      border: 0;
+      border-radius: 50%;
 
       font-weight: 600;
     }
@@ -461,31 +521,32 @@
     }
 
     .day.has-event {
-      cursor: pointer;
-      color: white;
-      background: var(--teal);
+      color: #ffffff;
 
-      box-shadow:
-        0 8px 18px rgba(22, 166, 166, 0.2);
+      background: var(--teal);
+      box-shadow: 0 8px 18px rgba(22, 166, 166, 0.2);
+
+      cursor: pointer;
     }
 
     .day.has-event:hover,
     .day.has-event.active {
+      background: var(--deep);
+
       transform:
         translateY(-2px)
         scale(1.04);
-
-      background: var(--deep);
     }
 
     .calendar-legend {
-      margin-top: 22px;
-
       display: flex;
       align-items: center;
       gap: 10px;
 
+      margin-top: 22px;
+
       color: var(--muted);
+
       font-size: 13px;
     }
 
@@ -493,12 +554,11 @@
       width: 10px;
       height: 10px;
 
-      border-radius: 50%;
-
       background: var(--teal);
+      border-radius: 50%;
     }
 
-    /* TRIP CARD */
+    /* БЛИЖАЙШЕЕ СОБЫТИЕ */
 
     .trip-card {
       display: grid;
@@ -509,6 +569,8 @@
 
     .trip-image {
       min-height: 100%;
+
+      background: var(--cream);
     }
 
     .trip-image img {
@@ -517,62 +579,64 @@
     }
 
     .trip-content {
-      padding: 34px;
-
       display: flex;
       flex-direction: column;
       justify-content: center;
+
+      padding: 34px;
     }
 
     .date-pill {
       display: inline-flex;
-      width: max-content;
-
-      padding: 8px 14px;
-
-      border-radius: 999px;
-      border: 1px solid var(--soft);
-
-      color: var(--deep);
-      font-size: 12px;
-      font-weight: 800;
+      width: fit-content;
 
       margin-bottom: 16px;
+      padding: 8px 14px;
+
+      color: var(--deep);
+
+      border: 1px solid var(--soft);
+      border-radius: 999px;
+
+      font-size: 12px;
+      font-weight: 800;
     }
 
     .trip-content h3 {
+      margin-bottom: 18px;
+
       font-size: clamp(40px, 4vw, 58px);
       line-height: 1;
-      margin-bottom: 18px;
     }
 
     .trip-content p {
-      color: #506060;
       margin-bottom: 18px;
+
+      color: #506060;
     }
 
     .trip-list {
-      list-style: none;
-
       display: grid;
       gap: 10px;
 
       margin-bottom: 22px;
+
+      list-style: none;
     }
 
     .trip-list li::before {
       content: "♡";
+
       margin-right: 9px;
+
       color: var(--teal);
     }
 
-    /* BLOG */
+    /* БЛОГ */
 
     .blog-grid {
       display: grid;
-      grid-template-columns:
-        repeat(3, 1fr);
-
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
     }
 
@@ -594,20 +658,21 @@
     }
 
     .blog-category {
+      margin-bottom: 8px;
+
       color: var(--teal);
 
       font-size: 11px;
+      font-weight: 800;
       letter-spacing: 0.13em;
       text-transform: uppercase;
-      font-weight: 800;
-
-      margin-bottom: 8px;
     }
 
     .blog-body h3 {
+      margin-bottom: 10px;
+
       font-size: 20px;
       line-height: 1.35;
-      margin-bottom: 10px;
     }
 
     .blog-body p {
@@ -615,29 +680,33 @@
       font-size: 14px;
     }
 
-    /* GALLERY */
+    /* ОБЛАКО */
 
     .gallery-grid {
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
+      align-items: stretch;
       gap: 26px;
     }
 
     .gallery-photo {
       min-height: 470px;
+
+      background: var(--cream);
     }
 
     .gallery-photo img {
       height: 100%;
       object-fit: cover;
+      object-position: center;
     }
 
     .gallery-content {
-      padding: 42px;
-
       display: flex;
       flex-direction: column;
       justify-content: center;
+
+      padding: 42px;
 
       background:
         linear-gradient(
@@ -648,42 +717,43 @@
     }
 
     .gallery-content h3 {
+      margin-bottom: 16px;
+
       font-size: clamp(40px, 4vw, 58px);
       line-height: 1;
-      margin-bottom: 16px;
     }
 
     .check-list {
-      list-style: none;
-
       display: grid;
       gap: 12px;
 
       margin: 18px 0 26px;
+
+      list-style: none;
     }
 
     .check-list li::before {
       content: "✓";
+
+      margin-right: 10px;
+
       color: var(--teal);
       font-weight: 900;
-      margin-right: 10px;
     }
 
-    /* INFO CARDS */
+    /* О НАС, СОТРУДНИЧЕСТВО, КОНТАКТЫ */
 
     .info-grid {
       display: grid;
-      grid-template-columns:
-        repeat(3, 1fr);
-
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
     }
 
     .info-card {
-      min-height: 430px;
-
       display: flex;
       flex-direction: column;
+
+      min-height: 430px;
     }
 
     .info-card img {
@@ -692,92 +762,115 @@
     }
 
     .info-body {
-      padding: 24px;
-
       display: flex;
       flex: 1;
       flex-direction: column;
+
+      padding: 24px;
     }
 
     .info-body h3 {
+      margin-bottom: 14px;
+
       font-size: 34px;
       line-height: 1;
-      margin-bottom: 14px;
     }
 
     .info-body p {
-      color: var(--muted);
       margin-bottom: 18px;
+
+      color: var(--muted);
     }
 
     .inline-link {
-      color: var(--deep);
-      font-weight: 800;
       margin-top: auto;
+
+      color: var(--deep);
+
+      font-weight: 800;
     }
 
     .contact-list {
       display: grid;
-      gap: 10px;
+      gap: 12px;
 
       margin-top: auto;
 
       font-size: 14px;
     }
 
-    /* FOOTER */
+    .contact-list a {
+      transition: 0.2s ease;
+    }
+
+    .contact-list a:hover {
+      color: var(--teal);
+    }
+
+    /* НИЖНЯЯ ЧАСТЬ */
 
     .footer {
+      margin-top: 36px;
       padding: 34px 0;
 
-      border-top:
-        1px solid var(--border);
-
-      margin-top: 36px;
+      border-top: 1px solid var(--border);
     }
 
     .footer-grid {
       display: grid;
-      grid-template-columns:
-        1fr auto 1fr;
-
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
       gap: 20px;
     }
 
     .footer-logo img {
-      width: 150px;
+      width: 84px;
+      height: 84px;
+
+      object-fit: contain;
     }
 
     .footer-center {
-      text-align: center;
       color: var(--muted);
+
       font-size: 13px;
+      text-align: center;
     }
 
     .socials {
       display: flex;
       justify-content: flex-end;
+      flex-wrap: wrap;
       gap: 10px;
     }
 
     .socials a {
-      width: 42px;
-      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
 
-      border-radius: 50%;
+      min-width: 44px;
+      height: 44px;
+      padding: 0 14px;
 
-      display: grid;
-      place-items: center;
+      color: #ffffff;
 
       background: var(--teal);
-      color: white;
+      border-radius: 999px;
 
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 800;
+
+      transition: 0.2s ease;
     }
 
-    /* MODAL */
+    .socials a:hover {
+      background: var(--deep);
+
+      transform: translateY(-2px);
+    }
+
+    /* ВСПЛЫВАЮЩЕЕ ОКНО */
 
     .modal {
       position: fixed;
@@ -789,8 +882,7 @@
 
       padding: 20px;
 
-      background:
-        rgba(13, 77, 77, 0.56);
+      background: rgba(13, 77, 77, 0.56);
 
       backdrop-filter: blur(10px);
     }
@@ -800,18 +892,14 @@
     }
 
     .modal-card {
+      position: relative;
+
       width: min(560px, 100%);
-
-      background: var(--white);
-
-      border-radius: 28px;
-
       padding: 30px;
 
-      box-shadow:
-        0 24px 70px rgba(0, 0, 0, 0.25);
-
-      position: relative;
+      background: var(--white);
+      border-radius: 28px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.25);
     }
 
     .modal-close {
@@ -822,26 +910,27 @@
       width: 38px;
       height: 38px;
 
+      background: var(--pale);
       border: 0;
       border-radius: 50%;
-
-      background: var(--pale);
 
       cursor: pointer;
     }
 
     .modal-card h3 {
+      margin-bottom: 14px;
+
       font-size: 42px;
       line-height: 1;
-      margin-bottom: 14px;
     }
 
     .modal-card p {
-      color: var(--muted);
       margin-bottom: 18px;
+
+      color: var(--muted);
     }
 
-    /* ANIMATION */
+    /* АНИМАЦИЯ */
 
     .reveal {
       opacity: 0;
@@ -854,10 +943,9 @@
       transform: none;
     }
 
-    /* TABLET */
+    /* ПЛАНШЕТ */
 
     @media (max-width: 980px) {
-
       .nav-links {
         position: fixed;
         top: 82px;
@@ -870,11 +958,8 @@
 
         padding: 20px;
 
+        background: rgba(255, 253, 250, 0.98);
         border-radius: 22px;
-
-        background:
-          rgba(255, 253, 250, 0.98);
-
         box-shadow: var(--shadow);
       }
 
@@ -884,7 +969,6 @@
 
       .menu-toggle {
         display: inline-grid;
-        place-items: center;
       }
 
       .header-actions .btn {
@@ -898,12 +982,20 @@
         grid-template-columns: 1fr;
       }
 
+      .hero-media {
+        min-height: 430px;
+      }
+
+      .hero-media img {
+        max-height: 430px;
+      }
+
       .trip-card {
         grid-template-columns: 1fr;
       }
 
       .trip-image {
-        min-height: 350px;
+        min-height: 340px;
       }
 
       .blog-grid,
@@ -916,51 +1008,151 @@
       }
     }
 
-    /* MOBILE */
+    /* МОБИЛЬНАЯ ВЕРСИЯ */
 
     @media (max-width: 680px) {
-
       .container {
-        width:
-          min(
-            100% - 24px,
-            var(--container)
-          );
+        width: min(100% - 24px, var(--container));
+      }
+
+      .section {
+        padding: 30px 0;
       }
 
       .nav {
-        min-height: 72px;
+        min-height: 68px;
       }
 
       .brand img {
-        width: 126px;
+        width: 58px;
+        height: 58px;
+      }
+
+      .nav-links {
+        top: 68px;
       }
 
       .hero {
-        padding-top: 20px;
+        padding-top: 14px;
       }
 
       .hero-copy {
-        padding: 28px 4px 20px;
+        padding: 24px 4px 16px;
       }
 
+      .hero-title {
+        font-size: 58px;
+      }
+
+      .hero-text {
+        font-size: 16px;
+      }
+
+      .hero-buttons {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .hero-buttons .btn {
+        width: 100%;
+      }
+
+      /*
+        Баннер на телефоне компактный
+        и показывается целиком.
+      */
+
       .hero-media {
-        min-height: 390px;
-        border-radius: 28px;
+        min-height: 0;
+        height: auto;
+        padding: 8px;
+
+        border-radius: 24px;
+      }
+
+      .hero-media img {
+        width: 100%;
+        height: auto;
+        max-height: 280px;
+
+        object-fit: contain;
+        object-position: center;
       }
 
       .note {
-        width: 52%;
-        top: 18px;
-        right: 16px;
-        font-size: 18px;
-        padding: 22px 16px;
+        top: 14px;
+        right: 10px;
+
+        width: 42%;
+        padding: 13px 10px;
+
+        font-size: 13px;
+        line-height: 1.2;
       }
 
-      .calendar-card,
+      .note::before {
+        width: 50px;
+        height: 15px;
+        top: -8px;
+      }
+
+      .advice-wrap {
+        gap: 16px;
+        padding: 14px;
+      }
+
+      .advice-copy {
+        padding: 8px;
+      }
+
+      .advice-copy h2 {
+        font-size: 38px;
+      }
+
+      .advice-copy p {
+        font-size: 15px;
+      }
+
+      /*
+        Все фотографии на телефоне
+        становятся компактнее.
+      */
+
+      .advice-image {
+        min-height: 0;
+        max-height: 220px;
+      }
+
+      .advice-image img {
+        height: 220px;
+        object-fit: cover;
+      }
+
+      .calendar-card {
+        padding: 20px;
+      }
+
       .trip-content,
       .gallery-content {
         padding: 22px;
+      }
+
+      .trip-card {
+        min-height: 0;
+      }
+
+      .trip-image {
+        min-height: 0;
+        max-height: 240px;
+      }
+
+      .trip-image img {
+        height: 240px;
+        object-fit: cover;
+      }
+
+      .trip-content h3 {
+        font-size: 40px;
       }
 
       .blog-grid,
@@ -972,21 +1164,54 @@
         grid-column: auto;
       }
 
+      .blog-card img {
+        height: 185px;
+      }
+
       .gallery-photo {
-        min-height: 330px;
+        min-height: 0;
+        max-height: 250px;
+      }
+
+      .gallery-photo img {
+        height: 250px;
+        object-fit: cover;
+      }
+
+      .gallery-content h3 {
+        font-size: 40px;
+      }
+
+      .info-card {
+        min-height: 0;
+      }
+
+      .info-card img {
+        height: 180px;
       }
 
       .footer-grid {
         grid-template-columns: 1fr;
+
         text-align: center;
       }
 
       .footer-logo img {
-        margin: auto;
+        width: 76px;
+        height: 76px;
+        margin: 0 auto;
       }
 
       .socials {
         justify-content: center;
+      }
+
+      .modal-card {
+        padding: 26px 20px;
+      }
+
+      .modal-card h3 {
+        font-size: 38px;
       }
     }
   </style>
@@ -1001,10 +1226,11 @@
       <a
         class="brand"
         href="#home"
+        aria-label="Твоя подружка"
       >
         <img
-          src="logo-main.png"
-          alt="Твоя подружка"
+          src="logo.png"
+          alt="Логотип Твоя подружка"
         >
       </a>
 
@@ -1041,7 +1267,9 @@
 
         <a
           class="btn btn-primary"
-          href="#calendar"
+          href="https://www.instagram.com/meet_ur_besties?igsh=MWRvbDhmazdyMXBobQ%3D%3D&utm_source=qr"
+          target="_blank"
+          rel="noopener"
         >
           Присоединиться
         </a>
@@ -1062,7 +1290,7 @@
 
   <main>
 
-    <!-- HERO -->
+    <!-- ГЛАВНЫЙ ЭКРАН -->
 
     <section
       class="hero section"
@@ -1112,7 +1340,7 @@
 
           <img
             src="hero-banner.png"
-            alt="Девичья поездка у океана"
+            alt="Твоя подружка — путешествия и девичьи встречи"
           >
 
           <div class="note">
@@ -1128,7 +1356,7 @@
 
     </section>
 
-    <!-- MONTH ADVICE -->
+    <!-- СОВЕТ МЕСЯЦА -->
 
     <section class="section">
 
@@ -1173,7 +1401,7 @@
 
     </section>
 
-    <!-- CALENDAR -->
+    <!-- КАЛЕНДАРЬ -->
 
     <section
       class="section"
@@ -1245,7 +1473,7 @@
             <div class="trip-image">
 
               <img
-                src="covington-trip.png"
+                src="calendar-covington.png"
                 alt="Поездка в Ковингтон"
               >
 
@@ -1271,8 +1499,9 @@
                 Едем в город, где снимали
                 «Дневники вампира»:
                 исторический центр,
+                главная площадь,
                 часовая башня,
-                знакомые улицы
+                Mystic Grill
                 и атмосфера Mystic Falls.
               </p>
 
@@ -1281,19 +1510,19 @@
                 id="featuredList"
               >
                 <li>
+                  Главная площадь
+                </li>
+
+                <li>
+                  Mystic Grill
+                </li>
+
+                <li>
                   Локации съёмок
                 </li>
 
                 <li>
                   Фото и видео
-                </li>
-
-                <li>
-                  Прогулка по центру
-                </li>
-
-                <li>
-                  Новые впечатления
                 </li>
               </ul>
 
@@ -1314,7 +1543,7 @@
 
     </section>
 
-    <!-- BLOG -->
+    <!-- БЛОГ -->
 
     <section
       class="section"
@@ -1420,7 +1649,7 @@
 
     </section>
 
-    <!-- CLOUD GALLERY -->
+    <!-- ДОСТУП К ОБЛАКУ -->
 
     <section
       class="section"
@@ -1438,8 +1667,8 @@
           <div class="card gallery-photo reveal">
 
             <img
-              src="cloud-gallery.png"
-              alt="Фотографии из поездок"
+              src="cloud-gallery-collage.png"
+              alt="Фотографии из поездок, пикников и девичьих встреч"
             >
 
           </div>
@@ -1495,7 +1724,7 @@
 
     </section>
 
-    <!-- ABOUT, PARTNERSHIP, CONTACTS -->
+    <!-- О НАС, СОТРУДНИЧЕСТВО, КОНТАКТЫ -->
 
     <section
       class="section"
@@ -1562,7 +1791,7 @@
 
               <a
                 class="inline-link"
-                href="mailto:ur-besties@aol.com"
+                href="mailto:ur_besties@aol.com?subject=Предложение%20о%20сотрудничестве%20для%20проекта%20Твоя%20подружка"
               >
                 Предложить сотрудничество →
               </a>
@@ -1597,13 +1826,13 @@
               <div class="contact-list">
 
                 <a
-                  href="mailto:ur-besties@aol.com"
+                  href="mailto:ur_besties@aol.com"
                 >
-                  ✉ ur-besties@aol.com
+                  ✉ ur_besties@aol.com
                 </a>
 
                 <a
-                  href="https://www.instagram.com/meet_ur_besties/"
+                  href="https://www.instagram.com/meet_ur_besties?igsh=MWRvbDhmazdyMXBobQ%3D%3D&utm_source=qr"
                   target="_blank"
                   rel="noopener"
                 >
@@ -1612,11 +1841,29 @@
                 </a>
 
                 <a
+                  href="https://www.youtube.com/@Твоя-подружка-здесь"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  ▶ YouTube:
+                  Твоя подружка
+                </a>
+
+                <a
+                  href="https://www.tiktok.com/@meet_ur_besties?_r=1&_t=ZP-97tjJsutSYh"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  ♪ TikTok:
+                  @meet_ur_besties
+                </a>
+
+                <a
                   href="https://buymeacoffee.com/tvoya.podruzhka"
                   target="_blank"
                   rel="noopener"
                 >
-                  ♡ Support Our Next Adventure
+                  ♡ Поддержать наши поездки
                 </a>
 
               </div>
@@ -1633,7 +1880,7 @@
 
   </main>
 
-  <!-- FOOTER -->
+  <!-- ПОДВАЛ -->
 
   <footer class="footer">
 
@@ -1642,8 +1889,8 @@
       <div class="footer-logo">
 
         <img
-          src="logo-main.png"
-          alt="Твоя подружка"
+          src="logo.png"
+          alt="Логотип Твоя подружка"
         >
 
       </div>
@@ -1663,19 +1910,39 @@
       <div class="socials">
 
         <a
-          href="https://www.instagram.com/meet_ur_besties/"
+          href="https://www.instagram.com/meet_ur_besties?igsh=MWRvbDhmazdyMXBobQ%3D%3D&utm_source=qr"
           target="_blank"
           rel="noopener"
+          aria-label="Instagram"
         >
           IG
         </a>
 
-        <a href="#">
-          YT
+        <a
+          href="https://www.youtube.com/@Твоя-подружка-здесь"
+          target="_blank"
+          rel="noopener"
+          aria-label="YouTube"
+        >
+          YouTube
         </a>
 
-        <a href="#">
-          TT
+        <a
+          href="https://www.tiktok.com/@meet_ur_besties?_r=1&_t=ZP-97tjJsutSYh"
+          target="_blank"
+          rel="noopener"
+          aria-label="TikTok"
+        >
+          TikTok
+        </a>
+
+        <a
+          href="https://buymeacoffee.com/tvoya.podruzhka"
+          target="_blank"
+          rel="noopener"
+          aria-label="Поддержать проект"
+        >
+          Support
         </a>
 
       </div>
@@ -1684,7 +1951,7 @@
 
   </footer>
 
-  <!-- EVENT MODAL -->
+  <!-- ОКНО ЗАПИСИ -->
 
   <div
     class="modal"
@@ -1716,9 +1983,12 @@
 
       <a
         class="btn btn-primary"
-        href="mailto:ur-besties@aol.com?subject=Хочу присоединиться к поездке"
+        id="telegramBookingButton"
+        href="https://t.me/dari_kansh"
+        target="_blank"
+        rel="noopener"
       >
-        Хочу присоединиться
+        Записаться через Telegram
       </a>
 
     </div>
@@ -1726,31 +1996,23 @@
   </div>
 
   <script>
-
     /*
-      ======================================
+      ===================================
       СОБЫТИЯ КАЛЕНДАРЯ
-      ======================================
+      ===================================
 
-      Чтобы добавить новое событие:
+      Чтобы добавить новое мероприятие:
 
-      1. Скопируй один объект.
-      2. Вставь его перед закрывающей
-         квадратной скобкой массива events.
-      3. Измени дату, название,
-         описание, изображение и пункты.
+      1. Скопируй один объект внутри events.
+      2. Вставь его перед закрывающей скобкой.
+      3. Измени дату, название, описание,
+         изображение и список деталей.
 
       Формат даты:
-
       YYYY-MM-DD
-
-      Например:
-
-      2026-08-08
     */
 
     const events = [
-
       {
         date: "2026-07-12",
 
@@ -1758,16 +2020,16 @@
           "Ковингтон — Mystic Falls",
 
         description:
-          "Поездка в город, где снимали «Дневники вампира»: исторический центр, часовая башня, локации съёмок и атмосфера Mystic Falls.",
+          "Поездка в город, где снимали «Дневники вампира»: исторический центр, главная площадь, часовая башня, Mystic Grill и атмосфера Mystic Falls.",
 
         image:
-          "covington-trip.png",
+          "calendar-covington.png",
 
         details: [
+          "Главная площадь Ковингтона",
+          "Mystic Grill",
           "Локации съёмок",
-          "Фото и видео",
-          "Прогулка по центру",
-          "Новые впечатления"
+          "Фото и видео"
         ]
       },
 
@@ -1778,13 +2040,13 @@
           "Прогулка на бордах",
 
         description:
-          "Летний день на воде: спокойная прогулка, красивые кадры, лёгкий пикник и хорошая компания.",
+          "Летний день на воде: спокойная прогулка на SUP-бордах, красивые кадры, лёгкий пикник и хорошая компания.",
 
         image:
-          "blog-roadtrip.png",
+          "calendar-sup-boards.png",
 
         details: [
-          "Прогулка на воде",
+          "Прогулка на SUP-бордах",
           "Фото и видео",
           "Лёгкий пикник",
           "Новые знакомства"
@@ -1798,10 +2060,10 @@
           "Рисование в лесу",
 
         description:
-          "Арт-встреча на природе: холсты, краски, лёгкие закуски, музыка и спокойная атмосфера.",
+          "Творческая встреча на природе: холсты, краски, лёгкие закуски, музыка и спокойная лесная атмосфера.",
 
         image:
-          "blog-picnic.png",
+          "calendar-forest-painting.png",
 
         details: [
           "Холсты и краски",
@@ -1810,7 +2072,6 @@
           "Фото на память"
         ]
       }
-
     ];
 
     const monthNames = [
@@ -1888,50 +2149,61 @@
         "modalDescription"
       );
 
+    const telegramBookingButton =
+      document.getElementById(
+        "telegramBookingButton"
+      );
+
     let currentDate =
       new Date(2026, 6, 1);
 
-    function getEventByDate(
-      date
-    ) {
-
+    function getEventByDate(date) {
       return events.find(
         event =>
           event.date === date
       );
-
     }
 
-    function formatDate(
-      dateString
-    ) {
-
+    function formatDate(dateString) {
       const date =
         new Date(
           dateString +
           "T12:00:00"
         );
 
-      return `
-        ${date.getDate()}
-        ${monthNames[date.getMonth()]}
-        ${date.getFullYear()}
-      `;
-
+      return (
+        date.getDate() +
+        " " +
+        monthNames[
+          date.getMonth()
+        ] +
+        " " +
+        date.getFullYear()
+      );
     }
 
-    function showFeaturedEvent(
-      event
-    ) {
+    function createTelegramLink(event) {
+      const message =
+        "Хочу записаться к вам на встречу 👋\n\n" +
+        "Мероприятие: " +
+        event.title +
+        "\n" +
+        "Дата: " +
+        formatDate(event.date);
 
+      return (
+        "https://t.me/dari_kansh?text=" +
+        encodeURIComponent(message)
+      );
+    }
+
+    function showFeaturedEvent(event) {
       if (!event) {
         return;
       }
 
       featuredDate.textContent =
-        formatDate(
-          event.date
-        );
+        formatDate(event.date);
 
       featuredTitle.textContent =
         event.title;
@@ -1949,29 +2221,28 @@
         event.details
           .map(
             item =>
-              `<li>${item}</li>`
+              "<li>" +
+              item +
+              "</li>"
           )
           .join("");
 
       featuredButton.onclick =
         () => openModal(event);
-
     }
 
-    function openModal(
-      event
-    ) {
-
+    function openModal(event) {
       modalDate.textContent =
-        formatDate(
-          event.date
-        );
+        formatDate(event.date);
 
       modalTitle.textContent =
         event.title;
 
       modalDescription.textContent =
         event.description;
+
+      telegramBookingButton.href =
+        createTelegramLink(event);
 
       eventModal.classList.add(
         "open"
@@ -1984,11 +2255,9 @@
 
       document.body.style.overflow =
         "hidden";
-
     }
 
     function closeModal() {
-
       eventModal.classList.remove(
         "open"
       );
@@ -2000,11 +2269,9 @@
 
       document.body.style.overflow =
         "";
-
     }
 
     function renderCalendar() {
-
       const year =
         currentDate.getFullYear();
 
@@ -2012,7 +2279,9 @@
         currentDate.getMonth();
 
       monthLabel.textContent =
-        `${monthNames[month]} ${year}`;
+        monthNames[month] +
+        " " +
+        year;
 
       const firstDay =
         new Date(
@@ -2051,7 +2320,6 @@
         index < 42;
         index++
       ) {
-
         const dayButton =
           document.createElement(
             "button"
@@ -2061,18 +2329,13 @@
           "day";
 
         let dayNumber;
-
-        let cellMonth =
-          month;
-
-        let cellYear =
-          year;
+        let cellMonth = month;
+        let cellYear = year;
 
         if (
           index <
           startWeekday - 1
         ) {
-
           dayNumber =
             previousMonthLastDay -
             (
@@ -2087,23 +2350,19 @@
           if (
             cellMonth < 0
           ) {
-
             cellMonth = 11;
             cellYear -= 1;
-
           }
 
           dayButton.classList.add(
             "other-month"
           );
-
         } else if (
           index >=
           startWeekday -
           1 +
           lastDay.getDate()
         ) {
-
           dayNumber =
             index -
             (
@@ -2119,32 +2378,26 @@
           if (
             cellMonth > 11
           ) {
-
             cellMonth = 0;
             cellYear += 1;
-
           }
 
           dayButton.classList.add(
             "other-month"
           );
-
         } else {
-
           dayNumber =
             index -
             (
               startWeekday -
               2
             );
-
         }
 
         dayButton.textContent =
           dayNumber;
 
         const isoDate = [
-
           cellYear,
 
           String(
@@ -2160,7 +2413,6 @@
             2,
             "0"
           )
-
         ].join("-");
 
         const event =
@@ -2169,7 +2421,6 @@
           );
 
         if (event) {
-
           dayButton.classList.add(
             "has-event"
           );
@@ -2180,7 +2431,6 @@
           dayButton.addEventListener(
             "click",
             () => {
-
               document
                 .querySelectorAll(
                   ".day.active"
@@ -2199,18 +2449,14 @@
               showFeaturedEvent(
                 event
               );
-
             }
           );
-
         }
 
         calendarDays.appendChild(
           dayButton
         );
-
       }
-
     }
 
     document
@@ -2220,7 +2466,6 @@
       .addEventListener(
         "click",
         () => {
-
           currentDate =
             new Date(
               currentDate.getFullYear(),
@@ -2229,7 +2474,6 @@
             );
 
           renderCalendar();
-
         }
       );
 
@@ -2240,7 +2484,6 @@
       .addEventListener(
         "click",
         () => {
-
           currentDate =
             new Date(
               currentDate.getFullYear(),
@@ -2249,7 +2492,6 @@
             );
 
           renderCalendar();
-
         }
       );
 
@@ -2265,36 +2507,28 @@
     eventModal.addEventListener(
       "click",
       event => {
-
         if (
           event.target ===
           eventModal
         ) {
-
           closeModal();
-
         }
-
       }
     );
 
     document.addEventListener(
       "keydown",
       event => {
-
         if (
           event.key ===
           "Escape"
         ) {
-
           closeModal();
-
         }
-
       }
     );
 
-    /* MOBILE MENU */
+    /* МОБИЛЬНОЕ МЕНЮ */
 
     const menuToggle =
       document.getElementById(
@@ -2309,11 +2543,9 @@
     menuToggle.addEventListener(
       "click",
       () => {
-
         navLinks.classList.toggle(
           "open"
         );
-
       }
     );
 
@@ -2321,35 +2553,27 @@
       .querySelectorAll("a")
       .forEach(
         link => {
-
           link.addEventListener(
             "click",
             () => {
-
               navLinks.classList.remove(
                 "open"
               );
-
             }
           );
-
         }
       );
 
-    /* ANIMATION */
+    /* ПОЯВЛЕНИЕ БЛОКОВ */
 
     const observer =
       new IntersectionObserver(
-
         entries => {
-
           entries.forEach(
             entry => {
-
               if (
                 entry.isIntersecting
               ) {
-
                 entry.target.classList.add(
                   "visible"
                 );
@@ -2357,18 +2581,13 @@
                 observer.unobserve(
                   entry.target
                 );
-
               }
-
             }
           );
-
         },
-
         {
           threshold: 0.12
         }
-
       );
 
     document
@@ -2387,7 +2606,6 @@
     showFeaturedEvent(
       events[0]
     );
-
   </script>
 
 </body>
