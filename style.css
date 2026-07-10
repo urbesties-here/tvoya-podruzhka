@@ -1,1 +1,817 @@
+/*
+  ======================================
+  СОБЫТИЯ КАЛЕНДАРЯ
+  ======================================
 
+  Чтобы добавить новое событие:
+
+  1. Скопируй один объект внутри events.
+  2. Вставь его перед закрывающей скобкой массива.
+  3. Измени дату, название, описание,
+     фотографию и список деталей.
+
+  Формат даты:
+  YYYY-MM-DD
+*/
+
+const events = [
+  {
+    date: "2026-07-12",
+
+    title:
+      "Ковингтон — Mystic Falls",
+
+    description:
+      "Поездка в город, где снимали «Дневники вампира»: исторический центр, главная площадь, часовая башня, Mystic Grill и атмосфера Mystic Falls.",
+
+    image:
+      "calendar-covington.png",
+
+    details: [
+      "Главная площадь Ковингтона",
+      "Mystic Grill",
+      "Локации съёмок",
+      "Фото и видео"
+    ]
+  },
+
+  {
+    date: "2026-07-24",
+
+    title:
+      "Прогулка на бордах",
+
+    description:
+      "Летний день на воде: спокойная прогулка на SUP-бордах, красивые кадры, лёгкий пикник и хорошая компания.",
+
+    image:
+      "calendar-sup-boards.png",
+
+    details: [
+      "Прогулка на SUP-бордах",
+      "Фото и видео",
+      "Лёгкий пикник",
+      "Новые знакомства"
+    ]
+  },
+
+  {
+    date: "2026-07-31",
+
+    title:
+      "Рисование в лесу",
+
+    description:
+      "Творческая встреча на природе: холсты, краски, лёгкие закуски, музыка и спокойная лесная атмосфера.",
+
+    image:
+      "calendar-forest-painting.png",
+
+    details: [
+      "Холсты и краски",
+      "Лесная локация",
+      "Чай и сладости",
+      "Фото на память"
+    ]
+  }
+];
+
+
+/*
+  Названия месяцев
+*/
+
+const monthNames = [
+  "январь",
+  "февраль",
+  "март",
+  "апрель",
+  "май",
+  "июнь",
+  "июль",
+  "август",
+  "сентябрь",
+  "октябрь",
+  "ноябрь",
+  "декабрь"
+];
+
+
+/*
+  Элементы страницы
+*/
+
+const monthLabel =
+  document.getElementById(
+    "monthLabel"
+  );
+
+const calendarDays =
+  document.getElementById(
+    "calendarDays"
+  );
+
+const prevMonthButton =
+  document.getElementById(
+    "prevMonth"
+  );
+
+const nextMonthButton =
+  document.getElementById(
+    "nextMonth"
+  );
+
+const featuredImage =
+  document.getElementById(
+    "featuredImage"
+  );
+
+const featuredDate =
+  document.getElementById(
+    "featuredDate"
+  );
+
+const featuredTitle =
+  document.getElementById(
+    "featuredTitle"
+  );
+
+const featuredDescription =
+  document.getElementById(
+    "featuredDescription"
+  );
+
+const featuredList =
+  document.getElementById(
+    "featuredList"
+  );
+
+const featuredButton =
+  document.getElementById(
+    "featuredButton"
+  );
+
+const eventModal =
+  document.getElementById(
+    "eventModal"
+  );
+
+const modalClose =
+  document.getElementById(
+    "modalClose"
+  );
+
+const modalDate =
+  document.getElementById(
+    "modalDate"
+  );
+
+const modalTitle =
+  document.getElementById(
+    "modalTitle"
+  );
+
+const modalDescription =
+  document.getElementById(
+    "modalDescription"
+  );
+
+const telegramBookingButton =
+  document.getElementById(
+    "telegramBookingButton"
+  );
+
+
+/*
+  Календарь изначально открывается
+  на июле 2026 года
+*/
+
+let currentDate =
+  new Date(
+    2026,
+    6,
+    1
+  );
+
+
+/*
+  Поиск события по дате
+*/
+
+function getEventByDate(
+  dateString
+) {
+  return events.find(
+    event =>
+      event.date ===
+      dateString
+  );
+}
+
+
+/*
+  Красивое отображение даты
+*/
+
+function formatDate(
+  dateString
+) {
+  const date =
+    new Date(
+      dateString +
+      "T12:00:00"
+    );
+
+  return (
+    date.getDate() +
+    " " +
+    monthNames[
+      date.getMonth()
+    ] +
+    " " +
+    date.getFullYear()
+  );
+}
+
+
+/*
+  Ссылка на Telegram
+  с готовым сообщением
+*/
+
+function createTelegramLink(
+  event
+) {
+  const message =
+    "Хочу записаться к вам на встречу 👋\n\n" +
+    "Мероприятие: " +
+    event.title +
+    "\nДата: " +
+    formatDate(
+      event.date
+    );
+
+  return (
+    "https://t.me/dari_kansh?text=" +
+    encodeURIComponent(
+      message
+    )
+  );
+}
+
+
+/*
+  Показываем выбранное событие
+  в большой карточке
+*/
+
+function showFeaturedEvent(
+  event
+) {
+  if (!event) {
+    return;
+  }
+
+  featuredImage.src =
+    event.image;
+
+  featuredImage.alt =
+    event.title;
+
+  featuredDate.textContent =
+    formatDate(
+      event.date
+    );
+
+  featuredTitle.textContent =
+    event.title;
+
+  featuredDescription.textContent =
+    event.description;
+
+  featuredList.innerHTML =
+    event.details
+      .map(
+        item =>
+          "<li>" +
+          item +
+          "</li>"
+      )
+      .join("");
+
+  featuredButton.onclick =
+    function () {
+      openModal(
+        event
+      );
+    };
+}
+
+
+/*
+  Открытие всплывающего окна
+*/
+
+function openModal(
+  event
+) {
+  modalDate.textContent =
+    formatDate(
+      event.date
+    );
+
+  modalTitle.textContent =
+    event.title;
+
+  modalDescription.textContent =
+    event.description;
+
+  telegramBookingButton.href =
+    createTelegramLink(
+      event
+    );
+
+  eventModal.classList.add(
+    "open"
+  );
+
+  eventModal.setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+  document.body.style.overflow =
+    "hidden";
+}
+
+
+/*
+  Закрытие всплывающего окна
+*/
+
+function closeModal() {
+  eventModal.classList.remove(
+    "open"
+  );
+
+  eventModal.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+  document.body.style.overflow =
+    "";
+}
+  /*
+  ======================================
+  СОЗДАНИЕ КАЛЕНДАРЯ
+  ======================================
+*/
+
+function renderCalendar() {
+  const year =
+    currentDate.getFullYear();
+
+  const month =
+    currentDate.getMonth();
+
+  monthLabel.textContent =
+    monthNames[month] +
+    " " +
+    year;
+
+  const firstDay =
+    new Date(
+      year,
+      month,
+      1
+    );
+
+  const lastDay =
+    new Date(
+      year,
+      month + 1,
+      0
+    );
+
+  let startWeekday =
+    firstDay.getDay();
+
+  /*
+    В JavaScript:
+    воскресенье = 0,
+    понедельник = 1.
+
+    Нам нужно,
+    чтобы календарь начинался
+    с понедельника.
+  */
+
+  if (
+    startWeekday === 0
+  ) {
+    startWeekday = 7;
+  }
+
+  const previousMonthLastDay =
+    new Date(
+      year,
+      month,
+      0
+    ).getDate();
+
+  calendarDays.innerHTML =
+    "";
+
+  /*
+    Создаём 42 клетки:
+    6 недель по 7 дней.
+  */
+
+  for (
+    let index = 0;
+    index < 42;
+    index++
+  ) {
+    const dayButton =
+      document.createElement(
+        "button"
+      );
+
+    dayButton.type =
+      "button";
+
+    let dayNumber;
+    let cellMonth =
+      month;
+    let cellYear =
+      year;
+
+    /*
+      Дни предыдущего месяца
+    */
+
+    if (
+      index <
+      startWeekday - 1
+    ) {
+      dayNumber =
+        previousMonthLastDay -
+        (
+          startWeekday -
+          2 -
+          index
+        );
+
+      cellMonth =
+        month - 1;
+
+      if (
+        cellMonth < 0
+      ) {
+        cellMonth = 11;
+        cellYear -= 1;
+      }
+
+      dayButton.classList.add(
+        "other-month"
+      );
+    }
+
+    /*
+      Дни следующего месяца
+    */
+
+    else if (
+      index >=
+      startWeekday -
+      1 +
+      lastDay.getDate()
+    ) {
+      dayNumber =
+        index -
+        (
+          startWeekday -
+          1 +
+          lastDay.getDate()
+        ) +
+        1;
+
+      cellMonth =
+        month + 1;
+
+      if (
+        cellMonth > 11
+      ) {
+        cellMonth = 0;
+        cellYear += 1;
+      }
+
+      dayButton.classList.add(
+        "other-month"
+      );
+    }
+
+    /*
+      Дни текущего месяца
+    */
+
+    else {
+      dayNumber =
+        index -
+        (
+          startWeekday -
+          2
+        );
+    }
+
+    dayButton.textContent =
+      dayNumber;
+
+    /*
+      Собираем дату
+      в формате YYYY-MM-DD
+    */
+
+    const isoDate = [
+      cellYear,
+
+      String(
+        cellMonth + 1
+      ).padStart(
+        2,
+        "0"
+      ),
+
+      String(
+        dayNumber
+      ).padStart(
+        2,
+        "0"
+      )
+    ].join("-");
+
+    const event =
+      getEventByDate(
+        isoDate
+      );
+
+    /*
+      Если на эту дату
+      есть мероприятие
+    */
+
+    if (event) {
+      dayButton.classList.add(
+        "has-event"
+      );
+
+      dayButton.title =
+        event.title;
+
+      dayButton.setAttribute(
+        "aria-label",
+        formatDate(
+          event.date
+        ) +
+        ": " +
+        event.title
+      );
+
+      dayButton.addEventListener(
+        "click",
+        function () {
+          document
+            .querySelectorAll(
+              ".calendar-days button.active"
+            )
+            .forEach(
+              button => {
+                button.classList.remove(
+                  "active"
+                );
+              }
+            );
+
+          dayButton.classList.add(
+            "active"
+          );
+
+          showFeaturedEvent(
+            event
+          );
+        }
+      );
+    }
+
+    calendarDays.appendChild(
+      dayButton
+    );
+  }
+}
+
+
+/*
+  ======================================
+  ПЕРЕКЛЮЧЕНИЕ МЕСЯЦЕВ
+  ======================================
+*/
+
+prevMonthButton.addEventListener(
+  "click",
+  function () {
+    currentDate =
+      new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth() - 1,
+        1
+      );
+
+    renderCalendar();
+  }
+);
+
+
+nextMonthButton.addEventListener(
+  "click",
+  function () {
+    currentDate =
+      new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth() + 1,
+        1
+      );
+
+    renderCalendar();
+  }
+);
+
+
+/*
+  ======================================
+  ЗАКРЫТИЕ ОКНА
+  ======================================
+*/
+
+modalClose.addEventListener(
+  "click",
+  closeModal
+);
+
+
+/*
+  Закрытие при нажатии
+  на затемнённую область
+*/
+
+eventModal.addEventListener(
+  "click",
+  function (event) {
+    if (
+      event.target ===
+      eventModal
+    ) {
+      closeModal();
+    }
+  }
+);
+
+
+/*
+  Закрытие клавишей Escape
+*/
+
+document.addEventListener(
+  "keydown",
+  function (event) {
+    if (
+      event.key ===
+      "Escape" &&
+      eventModal.classList.contains(
+        "open"
+      )
+    ) {
+      closeModal();
+    }
+  }
+);
+
+
+/*
+  ======================================
+  МОБИЛЬНОЕ МЕНЮ
+  ======================================
+*/
+
+const navigation =
+  document.querySelector(
+    "header nav"
+  );
+
+const menuButton =
+  document.createElement(
+    "button"
+  );
+
+menuButton.type =
+  "button";
+
+menuButton.className =
+  "mobile-menu-button";
+
+menuButton.textContent =
+  "Меню";
+
+menuButton.setAttribute(
+  "aria-label",
+  "Открыть меню"
+);
+
+
+/*
+  Добавляем кнопку меню
+  только через JavaScript
+*/
+
+const navContainer =
+  document.querySelector(
+    "header .nav"
+  );
+
+if (
+  navContainer &&
+  navigation
+) {
+  navContainer.insertBefore(
+    menuButton,
+    navigation
+  );
+}
+
+
+menuButton.addEventListener(
+  "click",
+  function () {
+    navigation.classList.toggle(
+      "open"
+    );
+
+    const isOpen =
+      navigation.classList.contains(
+        "open"
+      );
+
+    menuButton.textContent =
+      isOpen
+        ? "Закрыть"
+        : "Меню";
+
+    menuButton.setAttribute(
+      "aria-expanded",
+      String(isOpen)
+    );
+  }
+);
+
+
+/*
+  Закрываем меню
+  после выбора раздела
+*/
+
+navigation
+  .querySelectorAll("a")
+  .forEach(
+    link => {
+      link.addEventListener(
+        "click",
+        function () {
+          navigation.classList.remove(
+            "open"
+          );
+
+          menuButton.textContent =
+            "Меню";
+
+          menuButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+        }
+      );
+    }
+  );
+
+
+/*
+  ======================================
+  ЗАПУСК САЙТА
+  ======================================
+*/
+
+renderCalendar();
+
+showFeaturedEvent(
+  events[0]
+);
