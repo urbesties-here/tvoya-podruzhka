@@ -1,745 +1,2680 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+  <meta charset="UTF-8">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-<title>Твоя Подружка</title>
+  <title>Твоя подружка</title>
 
-<meta name="description" content="Девичьи путешествия, встречи и вдохновение в North Carolina">
+  <meta
+    name="description"
+    content="Девичьи путешествия, уютные встречи, творчество и новые впечатления в Северной Каролине."
+  >
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    rel="icon"
+    type="image/png"
+    href="logo.png"
+  >
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;500;600&family=Marck+Script&display=swap" rel="stylesheet">
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
 
-<link rel="stylesheet" href="style.css">
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
 
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Marck+Script&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --deep: #0d4d4d;
+      --teal: #16a6a6;
+      --teal-dark: #2d9298;
+      --soft-blue: #a7dadb;
+      --pale-blue: #d9eeef;
+      --cream: #f5f1ea;
+      --light: #fffdf9;
+      --white: #ffffff;
+      --text: #333333;
+      --muted: #6e7777;
+
+      --border: rgba(13, 77, 77, 0.13);
+      --shadow: 0 18px 50px rgba(51, 51, 51, 0.09);
+
+      --container: 1180px;
+      --radius-large: 34px;
+      --radius-medium: 26px;
+      --radius-small: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      overflow-x: hidden;
+
+      color: var(--text);
+
+      background:
+        radial-gradient(
+          circle at top left,
+          rgba(217, 238, 239, 0.42),
+          transparent 30%
+        ),
+        linear-gradient(
+          180deg,
+          #fffdfa 0%,
+          var(--cream) 100%
+        );
+
+      font-family: "Manrope", sans-serif;
+      line-height: 1.65;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .container {
+      width: min(
+        var(--container),
+        calc(100% - 40px)
+      );
+
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 48px 0;
+      scroll-margin-top: 100px;
+    }
+
+    .script {
+      color: var(--deep);
+
+      font-family: "Marck Script", cursive;
+      font-weight: 400;
+    }
+
+    .eyebrow {
+      display: inline-block;
+
+      margin-bottom: 10px;
+
+      color: var(--teal);
+
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      margin-bottom: 24px;
+
+      color: var(--deep);
+
+      font-family: "Marck Script", cursive;
+      font-size: clamp(40px, 5vw, 62px);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .section-title::after {
+      content: "♡";
+
+      color: var(--teal);
+
+      font-size: 0.65em;
+    }
+
+    .card {
+      overflow: hidden;
+
+      background:
+        rgba(255, 253, 249, 0.94);
+
+      border: 1px solid var(--border);
+      border-radius: var(--radius-medium);
+      box-shadow: var(--shadow);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+
+      min-height: 50px;
+      padding: 0 24px;
+
+      border: 1px solid transparent;
+      border-radius: 999px;
+
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      color: var(--white);
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--teal),
+          var(--teal-dark)
+        );
+
+      box-shadow:
+        0 12px 28px
+        rgba(22, 166, 166, 0.23);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 16px 36px
+        rgba(22, 166, 166, 0.3);
+    }
+
+    .btn-secondary {
+      color: var(--deep);
+
+      background:
+        rgba(255, 255, 255, 0.72);
+
+      border-color:
+        rgba(13, 77, 77, 0.18);
+    }
+
+    .btn-secondary:hover {
+      background: var(--pale-blue);
+    }
+
+    /* ШАПКА */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      background:
+        rgba(255, 253, 249, 0.91);
+
+      border-bottom:
+        1px solid
+        rgba(13, 77, 77, 0.08);
+
+      backdrop-filter: blur(16px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+
+      min-height: 82px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .brand img {
+      width: 76px;
+      height: 76px;
+
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--teal);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .menu-toggle {
+      display: none;
+      place-items: center;
+
+      width: 44px;
+      height: 44px;
+
+      color: var(--deep);
+
+      background: var(--pale-blue);
+      border: 0;
+      border-radius: 50%;
+
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    /* ГЛАВНЫЙ ЭКРАН */
+
+    .hero {
+      padding: 36px 0 24px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 0.82fr 1.55fr;
+      align-items: stretch;
+      gap: 28px;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      padding: 48px 16px 48px 8px;
+    }
+
+    .hero-title {
+      margin-bottom: 22px;
+
+      color: var(--deep);
+
+      font-family: "Marck Script", cursive;
+      font-size: clamp(58px, 7vw, 94px);
+      font-weight: 400;
+      line-height: 0.93;
+    }
+
+    .hero-text {
+      max-width: 470px;
+      margin-bottom: 28px;
+
+      color: #435555;
+
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-media {
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      min-height: 500px;
+      padding: 10px;
+
+      overflow: hidden;
+
+      background: #f5efe7;
+      border-radius: 44px;
+      box-shadow: var(--shadow);
+    }
+
+    /*
+      contain — чтобы надпись «Твоя подружка»
+      была видна полностью.
+    */
+
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      max-height: 500px;
+
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .hero-note {
+      position: absolute;
+      top: 28px;
+      right: 24px;
+
+      width: min(220px, 31%);
+      padding: 22px 18px;
+
+      color: var(--deep);
+
+      background:
+        rgba(255, 252, 247, 0.96);
+
+      box-shadow:
+        0 20px 35px
+        rgba(0, 0, 0, 0.14);
+
+      font-family: "Marck Script", cursive;
+      font-size: 20px;
+      line-height: 1.25;
+
+      transform: rotate(2deg);
+    }
+
+    .hero-note::before {
+      content: "";
+
+      position: absolute;
+      top: -12px;
+      left: 50%;
+
+      width: 74px;
+      height: 22px;
+
+      background:
+        rgba(167, 218, 219, 0.9);
+
+      transform:
+        translateX(-50%)
+        rotate(-3deg);
+    }
+
+    /* СОВЕТ МЕСЯЦА */
+
+    .advice-card {
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      align-items: center;
+      gap: 26px;
+
+      padding: 26px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(217, 238, 239, 0.8),
+          rgba(255, 253, 249, 0.96)
+        );
+
+      border: 1px solid var(--border);
+      border-radius: var(--radius-large);
+      box-shadow: var(--shadow);
+    }
+
+    .advice-copy {
+      padding: 16px;
+    }
+
+    .advice-copy h2 {
+      margin-bottom: 16px;
+
+      color: var(--deep);
+
+      font-family: "Marck Script", cursive;
+      font-size: clamp(42px, 5vw, 64px);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .advice-copy p {
+      max-width: 640px;
+
+      color: #536060;
+
+      font-size: 17px;
+      line-height: 1.85;
+    }
+
+    .advice-image {
+      min-height: 300px;
+
+      overflow: hidden;
+
+      border-radius: 26px;
+    }
+
+    .advice-image img {
+      height: 100%;
+
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* КАЛЕНДАРЬ */
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.45fr;
+      align-items: stretch;
+      gap: 26px;
+    }
+
+    .calendar-card {
+      padding: 28px;
+    }
+
+    .calendar-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin-bottom: 20px;
+    }
+
+    .month-label {
+      color: var(--deep);
+
+      font-size: 20px;
+      font-weight: 700;
+      text-transform: capitalize;
+    }
+
+    .calendar-arrow {
+      width: 40px;
+      height: 40px;
+
+      color: var(--deep);
+
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .calendar-arrow:hover {
+      color: var(--white);
+      background: var(--teal);
+    }
+
+    .weekdays,
+    .calendar-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+
+      text-align: center;
+    }
+
+    .weekdays {
+      margin-bottom: 8px;
+
+      color: var(--muted);
+
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .day {
+      aspect-ratio: 1;
+
+      color: var(--text);
+
+      background: transparent;
+      border: 0;
+      border-radius: 50%;
+
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .day.other-month {
+      opacity: 0.25;
+    }
+
+    .day.has-event {
+      color: var(--white);
+
+      background: var(--teal);
+
+      box-shadow:
+        0 8px 18px
+        rgba(22, 166, 166, 0.22);
+
+      cursor: pointer;
+    }
+
+    .day.has-event:hover,
+    .day.has-event.active {
+      background: var(--deep);
+
+      transform:
+        translateY(-2px)
+        scale(1.04);
+    }
+
+    .calendar-legend {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+
+      margin-top: 22px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+
+      background: var(--teal);
+      border-radius: 50%;
+    }
+
+    /* БОЛЬШАЯ КАРТОЧКА СОБЫТИЯ */
+
+    .featured-event {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+
+      min-height: 500px;
+    }
+
+    .featured-image {
+      min-height: 100%;
+
+      background: var(--cream);
+    }
+
+    .featured-image img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .featured-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      padding: 34px;
+    }
+
+    .date-pill {
+      display: inline-flex;
+      width: fit-content;
+
+      margin-bottom: 16px;
+      padding: 8px 14px;
+
+      color: var(--deep);
+
+      border: 1px solid var(--soft-blue);
+      border-radius: 999px;
+
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .featured-content h3 {
+      margin-bottom: 18px;
+
+      color: var(--deep);
+
+      font-family: "Marck Script", cursive;
+      font-size: clamp(40px, 4vw, 58px);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .featured-content p {
+      margin-bottom: 18px;
+
+      color: #536060;
+
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .featured-list {
+      display: grid;
+      gap: 10px;
+
+      margin-bottom: 24px;
+
+      list-style: none;
+    }
+
+    .featured-list li {
+      color: #455454;
+
+      font-size: 14px;
+    }
+
+    .featured-list li::before {
+      content: "♡";
+
+      margin-right: 8px;
+
+      color: var(--teal);
+    }
+
+    .event-button {
+      width: fit-content;
+    }
+
+    /* БЛОГ */
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .blog-card {
+      transition: 0.25s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .blog-card img {
+      height: 220px;
+
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .blog-content {
+      padding: 22px;
+    }
+
+    .blog-category {
+      display: inline-block;
+
+      margin-bottom: 8px;
+
+      color: var(--teal);
+
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .blog-content h3 {
+      margin-bottom: 11px;
+
+      color: var(--deep);
+
+      font-size: 20px;
+      line-height: 1.35;
+    }
+
+    .blog-content p {
+      color: var(--muted);
+
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    /* ГАЛЕРЕЯ */
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: stretch;
+      gap: 26px;
+    }
+
+    .gallery-image {
+      min-height: 470px;
+    }
+
+    .gallery-image img {
+      height: 100%;
+
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .gallery-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      padding: 42px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(217, 238, 239, 0.88),
+          rgba(255, 253, 249, 0.97)
+        );
+    }
+
+    .gallery-content h3 {
+      margin-bottom: 16px;
+
+      color: var(--deep);
+
+      font-family: "Marck Script", cursive;
+      font-size: clamp(40px, 4vw, 58px);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .gallery-content p {
+      color: #536060;
+
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .gallery-list {
+      display: grid;
+      gap: 12px;
+
+      margin: 20px 0 26px;
+
+      list-style: none;
+    }
+
+    .gallery-list li {
+      color: #465555;
+
+      font-size: 14px;
+    }
+
+    .gallery-list li::before {
+      content: "✓";
+
+      margin-right: 9px;
+
+      color: var(--teal);
+      font-weight: 800;
+    }
+
+    /* О НАС / СОТРУДНИЧЕСТВО / КОНТАКТЫ */
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .info-card {
+      display: flex;
+      flex-direction: column;
+
+      min-height: 430px;
+    }
+
+    .info-card img {
+      height: 210px;
+
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .info-content {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+
+      padding: 24px;
+    }
+
+    .info-content h3 {
+      margin-bottom: 14px;
+
+      color: var(--deep);
+
+      font-family: "Marck Script", cursive;
+      font-size: 38px;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .info-content p {
+      margin-bottom: 20px;
+
+      color: var(--muted);
+
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .text-link {
+      margin-top: auto;
+
+      color: var(--deep);
+
+      font-size: 14px;
+      font-weight: 700;
+
+      transition: 0.2s ease;
+    }
+
+    .text-link:hover {
+      color: var(--teal);
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 14px;
+
+      margin-top: auto;
+    }
+
+    .contact-links a {
+      color: var(--deep);
+
+      font-size: 15px;
+      font-weight: 600;
+
+      transition: 0.2s ease;
+    }
+
+    .contact-links a:hover {
+      color: var(--teal);
+    }
+
+    /* FOOTER */
+
+    .footer {
+      margin-top: 36px;
+      padding: 34px 0;
+
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-logo img {
+      width: 84px;
+      height: 84px;
+
+      object-fit: contain;
+    }
+
+    .footer-text {
+      color: var(--muted);
+
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .footer-text p + p {
+      margin-top: 4px;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      min-width: 44px;
+      height: 44px;
+      padding: 0 14px;
+
+      color: var(--white);
+
+      background: var(--teal);
+      border-radius: 999px;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      transition: 0.2s ease;
+    }
+
+    .social-links a:hover {
+      background: var(--deep);
+
+      transform: translateY(-2px);
+    }
+
+    /* МОДАЛЬНОЕ ОКНО */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+
+      display: none;
+      place-items: center;
+
+      padding: 20px;
+
+      background:
+        rgba(13, 77, 77, 0.56);
+
+      backdrop-filter: blur(10px);
+    }
+
+    .modal.open {
+      display: grid;
+    }
+
+    .modal-content {
+      position: relative;
+
+      width: min(560px, 100%);
+      padding: 30px;
+
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+
+      box-shadow:
+        0 24px 70px
+        rgba(0, 0, 0, 0.25);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+
+      width: 38px;
+      height: 38px;
+
+      color: var(--deep);
+
+      background: var(--pale-blue);
+      border: 0;
+      border-radius: 50%;
+
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .modal-content h3 {
+      margin-bottom: 14px;
+
+      color: var(--deep);
+
+      font-family: "Marck Script", cursive;
+      font-size: 44px;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .modal-content p {
+      margin-bottom: 22px;
+
+      color: var(--muted);
+
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    /* АНИМАЦИЯ */
+
+    .reveal {
+      opacity: 0;
+
+      transform: translateY(22px);
+
+      transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+
+      transform: translateY(0);
+    }
+
+    /* ПЛАНШЕТ */
+
+    @media (max-width: 980px) {
+      .nav-links {
+        position: fixed;
+        top: 82px;
+        left: 20px;
+        right: 20px;
+
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+
+        padding: 14px;
+
+        background:
+          rgba(255, 253, 249, 0.98);
+
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 12px;
+
+        text-align: center;
+      }
+
+      .menu-toggle {
+        display: inline-grid;
+      }
+
+      .header-actions .btn {
+        display: none;
+      }
+
+      .hero-grid,
+      .advice-card,
+      .calendar-grid,
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        padding: 32px 4px 18px;
+      }
+
+      .hero-media {
+        min-height: 430px;
+      }
+
+      .hero-media img {
+        max-height: 430px;
+      }
+
+      .featured-event {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-image {
+        min-height: 340px;
+      }
+
+      .blog-grid,
+      .info-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .info-grid .info-card:last-child {
+        grid-column: 1 / -1;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-logo img {
+        margin: 0 auto;
+      }
+
+      .social-links {
+        justify-content: center;
+      }
+    }
+
+    /* МОБИЛЬНАЯ ВЕРСИЯ */
+
+    @media (max-width: 680px) {
+      .container {
+        width:
+          min(
+            100% - 24px,
+            var(--container)
+          );
+      }
+
+      .section {
+        padding: 30px 0;
+      }
+
+      .nav {
+        min-height: 68px;
+      }
+
+      .brand img {
+        width: 58px;
+        height: 58px;
+      }
+
+      .nav-links {
+        top: 68px;
+      }
+
+      .hero {
+        padding: 16px 0 24px;
+      }
+
+      .hero-copy {
+        padding: 20px 4px 16px;
+
+        text-align: center;
+      }
+
+      .hero-title {
+        font-size: 58px;
+      }
+
+      .hero-text {
+        margin-left: auto;
+        margin-right: auto;
+
+        font-size: 15px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .hero-buttons .btn {
+        width: 100%;
+      }
+
+      /*
+        Главное фото меньше и полностью видно.
+      */
+
+      .hero-media {
+        min-height: 0;
+        height: auto;
+        padding: 8px;
+
+        border-radius: 24px;
+      }
+
+      .hero-media img {
+        width: 100%;
+        height: auto;
+        max-height: 280px;
+
+        object-fit: contain;
+        object-position: center;
+      }
+
+      .hero-note {
+        top: 13px;
+        right: 10px;
+
+        width: 42%;
+        padding: 12px 9px;
+
+        font-size: 13px;
+        line-height: 1.2;
+      }
+
+      .hero-note::before {
+        top: -8px;
+
+        width: 50px;
+        height: 15px;
+      }
+
+      .advice-card {
+        gap: 18px;
+        padding: 16px;
+      }
+
+      .advice-copy {
+        padding: 6px;
+      }
+
+      .advice-copy h2 {
+        font-size: 40px;
+      }
+
+      .advice-copy p {
+        font-size: 15px;
+      }
+
+      /*
+        Все изображения на телефоне компактнее.
+      */
+
+      .advice-image {
+        min-height: 0;
+      }
+
+      .advice-image img {
+        height: 210px;
+      }
+
+      .calendar-card {
+        padding: 20px;
+      }
+
+      .featured-event {
+        min-height: 0;
+      }
+
+      .featured-image {
+        min-height: 0;
+      }
+
+      .featured-image img {
+        height: 230px;
+      }
+
+      .featured-content {
+        padding: 22px;
+      }
+
+      .featured-content h3 {
+        font-size: 39px;
+      }
+
+      .event-button {
+        width: 100%;
+      }
+
+      .blog-grid,
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .info-grid .info-card:last-child {
+        grid-column: auto;
+      }
+
+      .blog-card img {
+        height: 185px;
+      }
+
+      .gallery-image {
+        min-height: 0;
+      }
+
+      .gallery-image img {
+        height: 235px;
+      }
+
+      .gallery-content {
+        padding: 24px;
+      }
+
+      .gallery-content h3 {
+        font-size: 39px;
+      }
+
+      .gallery-content .btn {
+        width: 100%;
+      }
+
+      .info-card {
+        min-height: 0;
+      }
+
+      .info-card img {
+        height: 180px;
+      }
+
+      .footer-grid {
+        text-align: center;
+      }
+
+      .footer-logo img {
+        width: 74px;
+        height: 74px;
+      }
+
+      .modal-content {
+        padding: 26px 20px;
+      }
+
+      .modal-content h3 {
+        font-size: 38px;
+      }
+
+      .modal-content .btn {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
+  <!-- ШАПКА -->
+
+  <header class="site-header">
+
+    <div class="container nav">
+
+      <a
+        class="brand"
+        href="#home"
+        aria-label="Твоя подружка"
+      >
+        <img
+          src="logo.png"
+          alt="Логотип Твоя подружка"
+        >
+      </a>
+
+      <nav
+        class="nav-links"
+        id="navLinks"
+        aria-label="Главное меню"
+      >
+        <a href="#home">Главная</a>
+        <a href="#calendar">Календарь</a>
+        <a href="#blog">Блог</a>
+        <a href="#gallery">Галерея</a>
+        <a href="#about">О нас</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+
+      <div class="header-actions">
+
+        <a
+          class="btn btn-primary"
+          href="https://www.instagram.com/meet_ur_besties?igsh=MWRvbDhmazdyMXBobQ%3D%3D&utm_source=qr"
+          target="_blank"
+          rel="noopener"
+        >
+          Присоединиться
+        </a>
 
-<div class="container nav">
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          type="button"
+          aria-label="Открыть меню"
+          aria-expanded="false"
+        >
+          ☰
+        </button>
+
+      </div>
+
+    </div>
+
+  </header>
+
+  <main>
+
+    <!-- ГЛАВНЫЙ ЭКРАН -->
 
-<a href="#" class="logo">
-<img src="logo.png" alt="Твоя Подружка">
-</a>
+    <section
+      class="hero"
+      id="home"
+    >
+
+      <div class="container hero-grid">
 
-<nav>
+        <div class="hero-copy reveal">
 
-<a href="#home">Главная</a>
+          <span class="eyebrow">
+            Charlotte • North Carolina
+          </span>
 
-<a href="#calendar">Календарь</a>
+          <h1 class="hero-title">
+            Привет,<br>
+            подружка!
+          </h1>
 
-<a href="#blog">Блог</a>
+          <p class="hero-text">
+            Мы с подружкой играем в игру
+            «Я никогда НЕ…» и каждую неделю
+            пробуем что-то новое вместе:
+            путешествуем, знакомимся,
+            рисуем, устраиваем пикники
+            и создаём воспоминания.
+          </p>
 
-<a href="#gallery">Галерея</a>
+          <div class="hero-buttons">
 
-<a href="#about">О нас</a>
+            <a
+              class="btn btn-primary"
+              href="#calendar"
+            >
+              Смотреть ближайшие поездки
+            </a>
 
-<a href="#contacts">Контакты</a>
+            <a
+              class="btn btn-secondary"
+              href="#blog"
+            >
+              Наш блог
+            </a>
 
-</nav>
+          </div>
 
-<a class="join-btn"
-href="https://www.instagram.com/meet_ur_besties?igsh=MWRvbDhmazdyMXBobQ%3D%3D&utm_source=qr"
-target="_blank">
+        </div>
 
-Присоединиться
+        <div class="hero-media reveal">
 
-</a>
+          <img
+            src="hero-banner.png"
+            alt="Твоя подружка — путешествия и девичьи встречи"
+          >
 
-</div>
+          <div class="hero-note">
+            Ты никогда не пожалеешь
+            о том, что сделала.
+            Пожалеешь только о том,
+            чего не сделала. ♡
+          </div>
 
-</header>
+        </div>
 
-<main>
+      </div>
 
-<section id="home" class="hero">
+    </section>
 
-<div class="container hero-grid">
+    <!-- СОВЕТ МЕСЯЦА -->
 
-<div class="hero-left">
+    <section class="section">
 
-<span class="subtitle">
+      <div class="container">
 
-North Carolina • июль
+        <div class="advice-card reveal">
 
-</span>
+          <div class="advice-copy">
 
-<h1>
+            <span class="eyebrow">
+              Совет месяца • Июль
+            </span>
 
-Привет,<br>
+            <h2>
+              Пусть этот июль станет
+              месяцем первых раз
+            </h2>
 
-подружка!
+            <p>
+              Попробуй то, на что давно
+              не решалась. Позвони первой.
+              Поезжай туда, где никогда
+              не была. Собери подруг
+              и просто живи так,
+              чтобы потом было что вспомнить.
+            </p>
 
-</h1>
+          </div>
 
-<p>
+          <div class="advice-image">
 
-Мы собираем девушек,
-которые любят красивые места,
-новые впечатления,
-путешествия
-и уютные встречи.
+            <img
+              src="monthly-advice-july.png"
+              alt="Совет месяца"
+            >
 
-</p>
+          </div>
 
-<div class="hero-buttons">
+        </div>
 
-<a href="#calendar" class="primary">
+      </div>
 
-Смотреть ближайшие поездки
+    </section>
 
-</a>
+    <!-- КАЛЕНДАРЬ -->
 
-<a href="#blog" class="secondary">
+    <section
+      class="section"
+      id="calendar"
+    >
 
-Наш блог
+      <div class="container">
 
-</a>
+        <h2 class="section-title">
+          Календарь поездок
+        </h2>
 
-</div>
+        <div class="calendar-grid">
 
-</div>
+          <div class="card calendar-card reveal">
 
-<div class="hero-right">
+            <div class="calendar-head">
 
-<img src="hero-banner.png" alt="">
+              <button
+                class="calendar-arrow"
+                id="prevMonth"
+                type="button"
+                aria-label="Предыдущий месяц"
+              >
+                ←
+              </button>
 
-</div>
+              <div
+                class="month-label"
+                id="monthLabel"
+              ></div>
 
-</div>
+              <button
+                class="calendar-arrow"
+                id="nextMonth"
+                type="button"
+                aria-label="Следующий месяц"
+              >
+                →
+              </button>
 
-</section>
-<section class="monthly-advice">
+            </div>
 
-<div class="container advice-grid">
+            <div class="weekdays">
+              <div>Пн</div>
+              <div>Вт</div>
+              <div>Ср</div>
+              <div>Чт</div>
+              <div>Пт</div>
+              <div>Сб</div>
+              <div>Вс</div>
+            </div>
 
-<div class="advice-text">
+            <div
+              class="calendar-days"
+              id="calendarDays"
+            ></div>
 
-<span class="subtitle">
-Совет месяца • Июль
-</span>
+            <div class="calendar-legend">
+              <span class="legend-dot"></span>
+              Запланированная встреча
+            </div>
 
-<h2>
-Пусть этот июль станет месяцем первых раз
-</h2>
+          </div>
 
-<p>
-Попробуй то, на что давно не решалась.
-Позвони первой. Поезжай туда, где никогда не была.
-Собери подруг и просто живи так,
-чтобы потом было что вспомнить.
-</p>
+          <article class="card featured-event reveal">
 
-</div>
+            <div class="featured-image">
 
-<div class="advice-image">
+              <img
+                id="featuredImage"
+                src="calendar-covington.png"
+                alt="Ковингтон — Mystic Falls"
+              >
 
-<img
-src="monthly-advice-july.png"
-alt="Совет месяца"
->
+            </div>
 
-</div>
+            <div class="featured-content">
 
-</div>
+              <span
+                class="date-pill"
+                id="featuredDate"
+              >
+                12 июля 2026
+              </span>
 
-</section>
+              <h3 id="featuredTitle">
+                Ковингтон — Mystic Falls
+              </h3>
 
+              <p id="featuredDescription">
+                Отправляемся в город,
+                где снимали сериал
+                «Дневники вампира».
+                Увидим главную площадь,
+                часовой монумент,
+                Mystic Grill
+                и знакомые места съёмок.
+              </p>
 
-<section id="calendar" class="calendar-section">
+              <ul
+                class="featured-list"
+                id="featuredList"
+              >
+                <li>Главная площадь Ковингтона</li>
+                <li>Mystic Grill</li>
+                <li>Локации съёмок</li>
+                <li>Фото и видео</li>
+              </ul>
 
-<div class="container">
+              <button
+                class="btn btn-primary event-button"
+                id="featuredButton"
+                type="button"
+              >
+                Подробнее и запись
+              </button>
 
-<div class="section-heading">
+            </div>
 
-<div>
+          </article>
 
-<span class="subtitle">
-Ближайшие события
-</span>
+        </div>
 
-<h2>
-Календарь поездок
-</h2>
+      </div>
 
-</div>
+    </section>
 
-<p>
-Нажми на отмеченную дату,
-чтобы увидеть информацию
-о ближайшей встрече.
-</p>
+    <!-- БЛОГ -->
 
-</div>
+    <section
+      class="section"
+      id="blog"
+    >
 
-<div class="calendar-layout">
+      <div class="container">
 
-<div class="calendar-box">
+        <h2 class="section-title">
+          Наш блог
+        </h2>
 
-<div class="calendar-header">
+        <div class="blog-grid">
 
-<button
-id="prevMonth"
-type="button"
-aria-label="Предыдущий месяц"
->
-←
-</button>
+          <article class="card blog-card reveal">
 
-<h3 id="monthLabel">
-Июль 2026
-</h3>
+            <img
+              src="blog-picnic.png"
+              alt="Девичий пикник"
+            >
 
-<button
-id="nextMonth"
-type="button"
-aria-label="Следующий месяц"
->
-→
-</button>
+            <div class="blog-content">
 
-</div>
+              <span class="blog-category">
+                Встречи
+              </span>
 
-<div class="weekdays">
+              <h3>
+                Как проходит наш уютный
+                девичий пикник
+              </h3>
 
-<span>Пн</span>
-<span>Вт</span>
-<span>Ср</span>
-<span>Чт</span>
-<span>Пт</span>
-<span>Сб</span>
-<span>Вс</span>
+              <p>
+                Пледы, красивые места,
+                лёгкая еда и живые разговоры.
+              </p>
 
-</div>
+            </div>
 
-<div
-class="calendar-days"
-id="calendarDays"
-></div>
+          </article>
 
-<div class="calendar-note">
+          <article class="card blog-card reveal">
 
-<span></span>
+            <img
+              src="blog-roadtrip.png"
+              alt="Путешествие с подругами"
+            >
 
-Запланированная встреча
+            <div class="blog-content">
 
-</div>
+              <span class="blog-category">
+                Путешествия
+              </span>
 
-</div>
+              <h3>
+                Иногда достаточно просто
+                сказать: «Поехали?»
+              </h3>
 
+              <p>
+                О дороге, спонтанных планах
+                и историях, которые остаются
+                с нами.
+              </p>
 
-<div class="featured-event">
+            </div>
 
-<div class="featured-event-image">
+          </article>
 
-<img
-id="featuredImage"
-src="calendar-covington.png"
-alt="Ковингтон — Mystic Falls"
->
+          <article class="card blog-card reveal">
 
-</div>
+            <img
+              src="blog-friends.png"
+              alt="Уютная встреча"
+            >
 
-<div class="featured-event-content">
+            <div class="blog-content">
 
-<span
-class="event-date"
-id="featuredDate"
->
-12 июля 2026
-</span>
+              <span class="blog-category">
+                Вдохновение
+              </span>
 
-<h3 id="featuredTitle">
-Ковингтон — Mystic Falls
-</h3>
+              <h3>
+                Маленькие привычки,
+                которые делают жизнь теплее
+              </h3>
 
-<p id="featuredDescription">
-Отправляемся в уютный город,
-где снимали сериал
-«Дневники вампира».
-Увидим главную площадь,
-часовую башню,
-Mystic Grill
-и знакомые места съёмок.
-</p>
+              <p>
+                Иногда лучший вечер начинается
+                с чашки кофе и свободного времени.
+              </p>
 
-<ul id="featuredList">
+            </div>
 
-<li>
-Главная площадь Ковингтона
-</li>
+          </article>
 
-<li>
-Mystic Grill
-</li>
+        </div>
 
-<li>
-Локации съёмок
-</li>
+      </div>
 
-<li>
-Фото и видео
-</li>
+    </section>
 
-</ul>
+    <!-- ГАЛЕРЕЯ -->
 
-<button
-class="primary event-button"
-id="featuredButton"
-type="button"
->
-Подробнее и запись
-</button>
+    <section
+      class="section"
+      id="gallery"
+    >
 
-</div>
+      <div class="container">
 
-</div>
+        <h2 class="section-title">
+          Доступ к облаку
+        </h2>
 
-</div>
+        <div class="gallery-grid">
 
-</div>
+          <div class="card gallery-image reveal">
 
-</section>
+            <img
+              src="cloud-gallery-collage.png"
+              alt="Фотографии из поездок и встреч"
+            >
 
+          </div>
 
-<section id="blog" class="blog-section">
+          <div class="card gallery-content reveal">
 
-<div class="container">
+            <span class="eyebrow">
+              Фото и видео после встреч
+            </span>
 
-<div class="section-heading">
+            <h3>
+              Забери свои воспоминания
+            </h3>
 
-<div>
+            <p>
+              После каждой поездки
+              мы собираем фотографии
+              и видео, чтобы каждая
+              участница могла сохранить
+              любимые кадры.
+            </p>
 
-<span class="subtitle">
-Наши истории
-</span>
+            <ul class="gallery-list">
+              <li>Альбомы после поездок</li>
+              <li>Фотографии и видео</li>
+              <li>Все воспоминания в одном месте</li>
+            </ul>
 
-<h2>
-Блог
-</h2>
+            <a
+              class="btn btn-primary"
+              href="https://www.instagram.com/meet_ur_besties?igsh=MWRvbDhmazdyMXBobQ%3D%3D&utm_source=qr"
+              target="_blank"
+              rel="noopener"
+            >
+              Перейти в Instagram
+            </a>
 
-</div>
+          </div>
 
-<p>
-Поездки, уютные встречи,
-новые знакомства
-и немного вдохновения.
-</p>
+        </div>
 
-</div>
+      </div>
 
-<div class="blog-grid">
+    </section>
 
-<article class="blog-card">
+    <!-- О НАС / СОТРУДНИЧЕСТВО / КОНТАКТЫ -->
 
-<img
-src="blog-picnic.png"
-alt="Девичий пикник"
->
+    <section
+      class="section"
+      id="about"
+    >
 
-<div class="blog-content">
+      <div class="container">
 
-<span>
-Встречи
-</span>
+        <div class="info-grid">
 
-<h3>
-Как проходит наш уютный пикник
-</h3>
+          <article class="card info-card reveal">
 
-<p>
-Пледы, красивые места,
-лёгкая еда
-и живые разговоры.
-</p>
+            <img
+              src="about-us.png"
+              alt="О проекте Твоя подружка"
+            >
 
-</div>
+            <div class="info-content">
 
-</article>
+              <h3>
+                О нас
+              </h3>
 
+              <p>
+                «Твоя подружка» —
+                это девичьи поездки,
+                уютные встречи
+                и маленькие приключения
+                для тех, кто хочет выйти
+                из рутины и попробовать
+                что-то впервые.
+              </p>
 
-<article class="blog-card">
+              <a
+                class="text-link"
+                href="#home"
+              >
+                Подробнее о нас →
+              </a>
 
-<img
-src="blog-roadtrip.png"
-alt="Поездка с подругами"
->
+            </div>
 
-<div class="blog-content">
+          </article>
 
-<span>
-Путешествия
-</span>
+          <article class="card info-card reveal">
 
-<h3>
-Иногда достаточно просто сказать: «Поехали?»
-</h3>
+            <img
+              src="partnership.png"
+              alt="Сотрудничество"
+            >
 
-<p>
-О дороге, спонтанных планах
-и воспоминаниях,
-которые остаются с нами.
-</p>
+            <div class="info-content">
 
-</div>
+              <h3>
+                Сотрудничество
+              </h3>
 
-</article>
+              <p>
+                Мы открыты к сотрудничеству
+                с локальными брендами,
+                кафе, отелями,
+                фотографами, студиями
+                и красивыми местами.
+              </p>
 
+              <a
+                class="text-link"
+                href="mailto:ur_besties@aol.com?subject=Предложение%20о%20сотрудничестве%20для%20проекта%20Твоя%20подружка"
+              >
+                Предложить сотрудничество →
+              </a>
 
-<article class="blog-card">
+            </div>
 
-<img
-src="blog-friends.png"
-alt="Встреча с подругами"
->
+          </article>
 
-<div class="blog-content">
+          <article
+            class="card info-card reveal"
+            id="contacts"
+          >
 
-<span>
-Вдохновение
-</span>
+            <img
+              src="contact-info.png"
+              alt="Контакты"
+            >
 
-<h3>
-Маленькие привычки,
-которые делают жизнь теплее
-</h3>
+            <div class="info-content">
 
-<p>
-Иногда лучший вечер
-начинается с чашки кофе
-и свободного времени.
-</p>
+              <h3>
+                Контакты
+              </h3>
 
-</div>
+              <p>
+                Напиши нам —
+                мы всегда рады
+                новым знакомствам,
+                идеям и предложениям.
+              </p>
 
-</article>
+              <!-- Только почта и поддержка -->
 
-</div>
+              <div class="contact-links">
 
-</div>
+                <a href="mailto:ur_besties@aol.com">
+                  ✉ ur_besties@aol.com
+                </a>
 
-</section>
+                <a
+                  href="https://buymeacoffee.com/tvoya.podruzhka"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  ♡ Поддержать наши поездки
+                </a>
 
+              </div>
 
-<section id="gallery" class="gallery-section">
+            </div>
 
-<div class="container">
+          </article>
 
-<div class="section-heading">
+        </div>
 
-<div>
+      </div>
 
-<span class="subtitle">
-Фото и видео
-</span>
+    </section>
 
-<h2>
-Доступ к облаку
-</h2>
+  </main>
 
-</div>
+  <!-- FOOTER -->
 
-</div>
+  <footer class="footer">
 
-<div class="gallery-layout">
+    <div class="container footer-grid">
 
-<div class="gallery-image">
+      <div class="footer-logo">
 
-<img
-src="cloud-gallery-collage.png"
-alt="Коллаж фотографий из поездок"
->
+        <img
+          src="logo.png"
+          alt="Твоя подружка"
+        >
 
-</div>
+      </div>
 
-<div class="gallery-info">
+      <div class="footer-text">
 
-<span class="subtitle">
-Воспоминания после встреч
-</span>
+        <p>
+          © 2026 Твоя подружка
+        </p>
 
-<h3>
-Забери свои фотографии
-</h3>
+        <p>
+          Девичьи поездки и встречи
+          в North Carolina
+        </p>
 
-<p>
-После каждой поездки
-мы собираем фотографии
-и видео,
-чтобы каждая участница
-могла сохранить любимые кадры.
-</p>
+      </div>
 
-<ul>
+      <!-- Все социальные сети остаются только здесь -->
 
-<li>
-Альбомы после поездок
-</li>
+      <div class="social-links">
 
-<li>
-Фотографии и видео
-</li>
+        <a
+          href="https://www.instagram.com/meet_ur_besties?igsh=MWRvbDhmazdyMXBobQ%3D%3D&utm_source=qr"
+          target="_blank"
+          rel="noopener"
+        >
+          IG
+        </a>
 
-<li>
-Все воспоминания в одном месте
-</li>
+        <a
+          href="https://www.youtube.com/@Твоя-подружка-здесь"
+          target="_blank"
+          rel="noopener"
+        >
+          YouTube
+        </a>
 
-</ul>
+        <a
+          href="https://www.tiktok.com/@meet_ur_besties?_r=1&_t=ZP-97tjJsutSYh"
+          target="_blank"
+          rel="noopener"
+        >
+          TikTok
+        </a>
 
-<a
-class="primary"
-href="https://www.instagram.com/meet_ur_besties?igsh=MWRvbDhmazdyMXBobQ%3D%3D&utm_source=qr"
-target="_blank"
-rel="noopener"
->
-Перейти в Instagram
-</a>
+        <a
+          href="https://buymeacoffee.com/tvoya.podruzhka"
+          target="_blank"
+          rel="noopener"
+        >
+          Support
+        </a>
 
-</div>
+      </div>
 
-</div>
+    </div>
 
-</div>
+  </footer>
 
-</section>
+  <!-- МОДАЛЬНОЕ ОКНО СОБЫТИЯ -->
 
+  <div
+    class="modal"
+    id="eventModal"
+    aria-hidden="true"
+  >
 
-<section id="about" class="about-section">
+    <div class="modal-content">
 
-<div class="container info-grid">
+      <button
+        class="modal-close"
+        id="modalClose"
+        type="button"
+        aria-label="Закрыть"
+      >
+        ×
+      </button>
 
-<article class="info-card">
+      <span
+        class="eyebrow"
+        id="modalDate"
+      ></span>
 
-<img
-src="about-us.png"
-alt="О проекте Твоя Подружка"
->
+      <h3 id="modalTitle"></h3>
 
-<div class="info-content">
+      <p id="modalDescription"></p>
 
-<h3>
-О нас
-</h3>
+      <a
+        class="btn btn-primary"
+        id="telegramBookingButton"
+        href="https://t.me/dari_kansh"
+        target="_blank"
+        rel="noopener"
+      >
+        Записаться через Telegram
+      </a>
 
-<p>
-«Твоя Подружка» —
-это девичьи поездки,
-уютные встречи
-и маленькие приключения
-для тех,
-кто хочет выйти из рутины
-и попробовать что-то впервые.
-</p>
+    </div>
 
-<a href="#home">
-Подробнее о нас
-</a>
+  </div>
 
-</div>
+  <script>
+    /*
+      Чтобы добавить новое событие,
+      скопируй один объект внутри массива events
+      и измени дату, название, описание,
+      фотографию и детали.
+    */
 
-</article>
+    const events = [
+      {
+        date: "2026-07-12",
+        title: "Ковингтон — Mystic Falls",
+        description:
+          "Поездка в город, где снимали «Дневники вампира»: главная площадь, Mystic Grill, знакомые улицы и атмосфера Mystic Falls.",
+        image: "calendar-covington.png",
+        details: [
+          "Главная площадь Ковингтона",
+          "Mystic Grill",
+          "Локации съёмок",
+          "Фото и видео"
+        ]
+      },
 
+      {
+        date: "2026-07-24",
+        title: "Прогулка на бордах",
+        description:
+          "Летний день на воде: прогулка на SUP-бордах, красивые фотографии, лёгкий пикник и хорошая компания.",
+        image: "calendar-sup-boards.png",
+        details: [
+          "Прогулка на SUP-бордах",
+          "Фото и видео",
+          "Лёгкий пикник",
+          "Новые знакомства"
+        ]
+      },
 
-<article class="info-card">
+      {
+        date: "2026-07-31",
+        title: "Рисование в лесу",
+        description:
+          "Творческая встреча на природе: холсты, краски, лёгкие закуски, музыка и спокойная лесная атмосфера.",
+        image: "calendar-forest-painting.png",
+        details: [
+          "Холсты и краски",
+          "Лесная локация",
+          "Чай и сладости",
+          "Фото на память"
+        ]
+      }
+    ];
 
-<img
-src="partnership.png"
-alt="Сотрудничество"
->
+    const monthNames = [
+      "январь",
+      "февраль",
+      "март",
+      "апрель",
+      "май",
+      "июнь",
+      "июль",
+      "август",
+      "сентябрь",
+      "октябрь",
+      "ноябрь",
+      "декабрь"
+    ];
 
-<div class="info-content">
+    const monthLabel =
+      document.getElementById("monthLabel");
 
-<h3>
-Сотрудничество
-</h3>
+    const calendarDays =
+      document.getElementById("calendarDays");
 
-<p>
-Мы открыты к сотрудничеству
-с брендами,
-кафе,
-отелями,
-фотографами,
-студиями
-и красивыми локальными местами.
-</p>
+    const featuredImage =
+      document.getElementById("featuredImage");
 
-<a
-href="mailto:ur_besties@aol.com?subject=Предложение%20о%20сотрудничестве%20для%20проекта%20Твоя%20Подружка"
->
-Предложить сотрудничество
-</a>
+    const featuredDate =
+      document.getElementById("featuredDate");
 
-</div>
+    const featuredTitle =
+      document.getElementById("featuredTitle");
 
-</article>
+    const featuredDescription =
+      document.getElementById("featuredDescription");
 
+    const featuredList =
+      document.getElementById("featuredList");
 
-<article
-class="info-card"
-id="contacts"
->
+    const featuredButton =
+      document.getElementById("featuredButton");
 
-<img
-src="contact-info.png"
-alt="Контакты"
->
+    const eventModal =
+      document.getElementById("eventModal");
 
-<div class="info-content">
+    const modalClose =
+      document.getElementById("modalClose");
 
-<h3>
-Контакты
-</h3>
+    const modalDate =
+      document.getElementById("modalDate");
 
-<p>
-Напиши нам —
-мы всегда рады
-новым знакомствам,
-идеям
-и предложениям.
-</p>
+    const modalTitle =
+      document.getElementById("modalTitle");
 
-<div class="contact-links">
+    const modalDescription =
+      document.getElementById("modalDescription");
 
-<a href="mailto:ur_besties@aol.com">
-✉ ur_besties@aol.com
-</a>
+    const telegramBookingButton =
+      document.getElementById("telegramBookingButton");
 
-<a
-href="https://buymeacoffee.com/tvoya.podruzhka"
-target="_blank"
-rel="noopener"
->
-♡ Поддержать наши поездки
-</a>
+    let currentDate =
+      new Date(2026, 6, 1);
 
-</div>
+    function getEventByDate(dateString) {
+      return events.find(
+        event =>
+          event.date === dateString
+      );
+    }
 
-</div>
+    function formatDate(dateString) {
+      const date =
+        new Date(
+          dateString +
+          "T12:00:00"
+        );
 
-</article>
+      return (
+        date.getDate() +
+        " " +
+        monthNames[date.getMonth()] +
+        " " +
+        date.getFullYear()
+      );
+    }
 
-</div>
+    function createTelegramLink(event) {
+      const message =
+        "Хочу записаться к вам на встречу 👋\n\n" +
+        "Мероприятие: " +
+        event.title +
+        "\nДата: " +
+        formatDate(event.date);
 
-</section>
+      return (
+        "https://t.me/dari_kansh?text=" +
+        encodeURIComponent(message)
+      );
+    }
 
-</main>
+    function showFeaturedEvent(event) {
+      if (!event) {
+        return;
+      }
 
+      featuredImage.src =
+        event.image;
 
-<footer>
+      featuredImage.alt =
+        event.title;
 
-<div class="container footer-grid">
+      featuredDate.textContent =
+        formatDate(event.date);
 
-<div class="footer-logo">
+      featuredTitle.textContent =
+        event.title;
 
-<img
-src="logo.png"
-alt="Твоя Подружка"
->
+      featuredDescription.textContent =
+        event.description;
 
-</div>
+      featuredList.innerHTML =
+        event.details
+          .map(
+            item =>
+              "<li>" +
+              item +
+              "</li>"
+          )
+          .join("");
 
-<div class="footer-text">
+      featuredButton.onclick =
+        function () {
+          openModal(event);
+        };
+    }
 
-<p>
-© 2026 Твоя Подружка
-</p>
+    function openModal(event) {
+      modalDate.textContent =
+        formatDate(event.date);
 
-<p>
-Девичьи поездки и встречи
-в North Carolina
-</p>
+      modalTitle.textContent =
+        event.title;
 
-</div>
+      modalDescription.textContent =
+        event.description;
 
-<div class="social-links">
-
-<a
-href="https://www.instagram.com/meet_ur_besties?igsh=MWRvbDhmazdyMXBobQ%3D%3D&utm_source=qr"
-target="_blank"
-rel="noopener"
->
-IG
-</a>
-
-<a
-href="https://www.youtube.com/@Твоя-подружка-здесь"
-target="_blank"
-rel="noopener"
->
-YouTube
-</a>
-
-<a
-href="https://www.tiktok.com/@meet_ur_besties?_r=1&_t=ZP-97tjJsutSYh"
-target="_blank"
-rel="noopener"
->
-TikTok
-</a>
-
-<a
-href="https://buymeacoffee.com/tvoya.podruzhka"
-target="_blank"
-rel="noopener"
->
-Support
-</a>
-
-</div>
-
-</div>
-
-</footer>
-
-
-<div
-class="modal"
-id="eventModal"
-aria-hidden="true"
->
-
-<div class="modal-content">
-
-<button
-class="modal-close"
-id="modalClose"
-type="button"
-aria-label="Закрыть"
->
-×
-</button>
-
-<span
-class="subtitle"
-id="modalDate"
-></span>
-
-<h3 id="modalTitle"></h3>
-
-<p id="modalDescription"></p>
-
-<a
-class="primary"
-id="telegramBookingButton"
-href="https://t.me/dari_kansh"
-target="_blank"
-rel="noopener"
->
-Записаться через Telegram
-</a>
-
-</div>
-
-</div>
-
-
-<script src="script.js"></script>
+      telegramBookingButton.href =
+        createTelegramLink(event);
+
+      eventModal.classList.add("open");
+
+      eventModal.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+      document.body.classList.add(
+        "modal-open"
+      );
+    }
+
+    function closeModal() {
+      eventModal.classList.remove("open");
+
+      eventModal.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      document.body.classList.remove(
+        "modal-open"
+      );
+    }
+
+    function renderCalendar() {
+      const year =
+        currentDate.getFullYear();
+
+      const month =
+        currentDate.getMonth();
+
+      monthLabel.textContent =
+        monthNames[month] +
+        " " +
+        year;
+
+      const firstDay =
+        new Date(year, month, 1);
+
+      const lastDay =
+        new Date(year, month + 1, 0);
+
+      let startWeekday =
+        firstDay.getDay();
+
+      if (startWeekday === 0) {
+        startWeekday = 7;
+      }
+
+      const previousMonthLastDay =
+        new Date(
+          year,
+          month,
+          0
+        ).getDate();
+
+      calendarDays.innerHTML = "";
+
+      for (
+        let index = 0;
+        index < 42;
+        index++
+      ) {
+        const dayButton =
+          document.createElement(
+            "button"
+          );
+
+        dayButton.type = "button";
+        dayButton.className = "day";
+
+        let dayNumber;
+        let cellMonth = month;
+        let cellYear = year;
+
+        if (
+          index <
+          startWeekday - 1
+        ) {
+          dayNumber =
+            previousMonthLastDay -
+            (
+              startWeekday -
+              2 -
+              index
+            );
+
+          cellMonth =
+            month - 1;
+
+          if (cellMonth < 0) {
+            cellMonth = 11;
+            cellYear -= 1;
+          }
+
+          dayButton.classList.add(
+            "other-month"
+          );
+        } else if (
+          index >=
+          startWeekday -
+          1 +
+          lastDay.getDate()
+        ) {
+          dayNumber =
+            index -
+            (
+              startWeekday -
+              1 +
+              lastDay.getDate()
+            ) +
+            1;
+
+          cellMonth =
+            month + 1;
+
+          if (cellMonth > 11) {
+            cellMonth = 0;
+            cellYear += 1;
+          }
+
+          dayButton.classList.add(
+            "other-month"
+          );
+        } else {
+          dayNumber =
+            index -
+            (
+              startWeekday -
+              2
+            );
+        }
+
+        dayButton.textContent =
+          dayNumber;
+
+        const isoDate = [
+          cellYear,
+
+          String(
+            cellMonth + 1
+          ).padStart(2, "0"),
+
+          String(
+            dayNumber
+          ).padStart(2, "0")
+        ].join("-");
+
+        const event =
+          getEventByDate(isoDate);
+
+        if (event) {
+          dayButton.classList.add(
+            "has-event"
+          );
+
+          dayButton.title =
+            event.title;
+
+          dayButton.setAttribute(
+            "aria-label",
+            formatDate(event.date) +
+            ": " +
+            event.title
+          );
+
+          dayButton.addEventListener(
+            "click",
+            function () {
+              document
+                .querySelectorAll(
+                  ".day.active"
+                )
+                .forEach(
+                  button =>
+                    button.classList.remove(
+                      "active"
+                    )
+                );
+
+              dayButton.classList.add(
+                "active"
+              );
+
+              showFeaturedEvent(event);
+            }
+          );
+        }
+
+        calendarDays.appendChild(
+          dayButton
+        );
+      }
+    }
+
+    document
+      .getElementById("prevMonth")
+      .addEventListener(
+        "click",
+        function () {
+          currentDate =
+            new Date(
+              currentDate.getFullYear(),
+              currentDate.getMonth() - 1,
+              1
+            );
+
+          renderCalendar();
+        }
+      );
+
+    document
+      .getElementById("nextMonth")
+      .addEventListener(
+        "click",
+        function () {
+          currentDate =
+            new Date(
+              currentDate.getFullYear(),
+              currentDate.getMonth() + 1,
+              1
+            );
+
+          renderCalendar();
+        }
+      );
+
+    modalClose.addEventListener(
+      "click",
+      closeModal
+    );
+
+    eventModal.addEventListener(
+      "click",
+      function (event) {
+        if (
+          event.target === eventModal
+        ) {
+          closeModal();
+        }
+      }
+    );
+
+    document.addEventListener(
+      "keydown",
+      function (event) {
+        if (
+          event.key === "Escape" &&
+          eventModal.classList.contains(
+            "open"
+          )
+        ) {
+          closeModal();
+        }
+      }
+    );
+
+    /*
+      Мобильное меню
+    */
+
+    const menuToggle =
+      document.getElementById(
+        "menuToggle"
+      );
+
+    const navLinks =
+      document.getElementById(
+        "navLinks"
+      );
+
+    menuToggle.addEventListener(
+      "click",
+      function () {
+        navLinks.classList.toggle(
+          "open"
+        );
+
+        const isOpen =
+          navLinks.classList.contains(
+            "open"
+          );
+
+        menuToggle.setAttribute(
+          "aria-expanded",
+          String(isOpen)
+        );
+
+        menuToggle.textContent =
+          isOpen
+            ? "×"
+            : "☰";
+      }
+    );
+
+    navLinks
+      .querySelectorAll("a")
+      .forEach(
+        link => {
+          link.addEventListener(
+            "click",
+            function () {
+              navLinks.classList.remove(
+                "open"
+              );
+
+              menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+              );
+
+              menuToggle.textContent =
+                "☰";
+            }
+          );
+        }
+      );
+
+    /*
+      Плавное появление блоков
+    */
+
+    const observer =
+      new IntersectionObserver(
+        entries => {
+          entries.forEach(
+            entry => {
+              if (
+                entry.isIntersecting
+              ) {
+                entry.target.classList.add(
+                  "visible"
+                );
+
+                observer.unobserve(
+                  entry.target
+                );
+              }
+            }
+          );
+        },
+        {
+          threshold: 0.1
+        }
+      );
+
+    document
+      .querySelectorAll(".reveal")
+      .forEach(
+        element =>
+          observer.observe(element)
+      );
+
+    renderCalendar();
+
+    showFeaturedEvent(events[0]);
+  </script>
 
 </body>
 </html>
