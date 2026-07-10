@@ -815,3 +815,69 @@ renderCalendar();
 showFeaturedEvent(
   events[0]
 );
+.mobile-menu-button {
+  display: none;
+  min-height: 42px;
+  padding: 0 18px;
+
+  color: var(--deep);
+
+  background: var(--pale);
+  border: 0;
+  border-radius: 999px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+@media (max-width: 680px) {
+  header .nav {
+    position: relative;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding: 6px 0;
+  }
+
+  .mobile-menu-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  header nav {
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+
+    padding: 14px;
+
+    background: rgba(255, 253, 250, 0.98);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+  }
+
+  header nav.open {
+    display: flex;
+  }
+
+  header nav a {
+    padding: 12px 10px;
+    text-align: center;
+  }
+
+  .join-btn {
+    display: none;
+  }
+}
